@@ -70,5 +70,22 @@ while contador < 3:
     contador += 1
 ```
 ## **Funciones en Python**
+Las funciones permiten reutilizar código agrupando una serie de instrucciones dentro de un bloque con nombre.
+
+```python
+def calcular_area_circulo(radio):
+    return 3.1416 * radio ** 2
+
+area = calcular_area_circulo(5)
+print(f"El área del círculo es: {area}")
+```
+Este código define una función calcular_area_circulo() que recibe un valor radio y retorna el área de un círculo.
+
+Python es un lenguaje poderoso y versátil que ofrece una sintaxis clara y flexible. Gracias a su tipado dinámico, estructuras de control y soporte para múltiples paradigmas, es utilizado en una amplia gama de aplicaciones, desde desarrollo web hasta inteligencia artificial. Su facilidad de uso y amplia comunidad lo convierten en una excelente opción tanto para principiantes como para programadores experimentados.
+
+# Referencias
+- Downey, A. (2015). Think Python: How to Think Like a Computer Scientist. O'Reilly Media.
+- Shaw, Z. (2019). Learn Python 3 the Hard Way. Addison-Wesley.
+- Zelle, J. (2016). Python Programming: An Introduction to Computer Science. Franklin, Beedle & Associates.
 
 
