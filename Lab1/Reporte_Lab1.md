@@ -31,4 +31,44 @@ usuario = {"nombre": "Ana", "edad": 30}
 
 print(numero, pi, mensaje, es_valido, colores, coordenadas, usuario)
 ```
+## **2. Control de Flujo en Python**
+Python permite modificar el flujo de ejecución del código mediante estructuras condicionales y bucles, lo que facilita la toma de decisiones y la ejecución repetitiva de instrucciones.
+
+### **Condicionales (if, elif, else)**
+Los condicionales evalúan expresiones lógicas y ejecutan diferentes bloques de código según el resultado.
+
+```python
+temperatura = 25
+
+if temperatura > 30:
+    print("Hace mucho calor")
+elif temperatura > 20:
+    print("El clima es agradable")
+else:
+    print("Hace frío")
+```
+Este fragmento de código evalúa la temperatura y selecciona el mensaje correspondiente.
+
+### **Bucles en python**
+Los bucles permiten ejecutar instrucciones repetitivamente hasta que se cumpla una condición de finalización.
+
+### **Bucle for**
+El bucle for recorre elementos de una secuencia como listas o rangos numéricos.
+
+```python
+nombres = ["Carlos", "María", "Pedro"]
+for nombre in nombres:
+    print(f"Hola, {nombre}!")
+```
+### **Bucle while**
+El bucle while ejecuta un bloque de código mientras una condición sea verdadera.
+
+```python
+contador = 0
+while contador < 3:
+    print(f"Intento número {contador + 1}")
+    contador += 1
+```
+## **Funciones en Python**
+
 
