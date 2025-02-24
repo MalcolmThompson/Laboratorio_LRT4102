@@ -19,192 +19,189 @@ Below are the fundamental data types in Python:
 - **Tuples (`tuple`)**: Similar to lists, but immutable: `(2, "blue", 9.1)`.
 - **Dictionaries (`dict`)**: They store key-value pairs, such as `{"name": "Luis", "age": 25}`.
 
-### **Ejemplo de Uso de Variables**
+### **Example of Variable Usage**
 ```python
-numero = 42
+number = 42
 pi = 3.14
-mensaje = "Hola, Python!"
-es_valido = True
-colores = ["rojo", "verde", "azul"]
-coordenadas = (10, 20)
-usuario = {"nombre": "Ana", "edad": 30}
+message = "Hello, Python!"
+is_valid = True
+colors = ["red", "green", "blue"]
+coordinates = (10, 20)
+user = {"name": "Ana", "age": 30}
 
-print(numero, pi, mensaje, es_valido, colores, coordenadas, usuario)
+print(number, pi, message, is_valid, colors, coordinates, user)
 ```
-## **2. Control de Flujo en Python**
-Python permite modificar el flujo de ejecución del código mediante estructuras condicionales y bucles, lo que facilita la toma de decisiones y la ejecución repetitiva de instrucciones.
+## **2. Flow Control in Python**
+Python allows modifying the execution flow of the code through conditional structures and loops, which facilitate decision-making and repetitive execution of instructions.
 
-### **Condicionales (if, elif, else)**
-Los condicionales evalúan expresiones lógicas y ejecutan diferentes bloques de código según el resultado.
-
+### **Conditionals (if, elif, else)**
+Conditionals evaluate logical expressions and execute different code blocks depending on the result.
 ```python
-temperatura = 25
+temperature = 25
 
-if temperatura > 30:
-    print("Hace mucho calor")
-elif temperatura > 20:
-    print("El clima es agradable")
+if temperature > 30:
+    print("It's very hot")
+elif temperature > 20:
+    print("The weather is pleasant")
 else:
-    print("Hace frío")
+    print("It's cold")
 ```
-Este fragmento de código evalúa la temperatura y selecciona el mensaje correspondiente.
+This code snippet evaluates the temperature and selects the corresponding message.
 
-### **Bucles en python**
-Los bucles permiten ejecutar instrucciones repetitivamente hasta que se cumpla una condición de finalización.
+### **Loops in Python**
+Loops allow executing instructions repeatedly until a termination condition is met.
 
-### **Bucle for**
-El bucle for recorre elementos de una secuencia como listas o rangos numéricos.
+### **For Loop**
+The for loop iterates over elements in a sequence, such as lists or numerical ranges.
 
 ```python
-nombres = ["Carlos", "María", "Pedro"]
-for nombre in nombres:
-    print(f"Hola, {nombre}!")
+names = ["Carlos", "María", "Pedro"]
+for name in names:
+    print(f"Hello, {name}!")
 ```
-### **Bucle while**
-El bucle while ejecuta un bloque de código mientras una condición sea verdadera.
+### **While Loop**
+The while loop executes a block of code while a condition remains true.
 
 ```python
-contador = 0
-while contador < 3:
-    print(f"Intento número {contador + 1}")
-    contador += 1
+counter = 0
+while counter < 3:
+    print(f"Attempt number {counter + 1}")
+    counter += 1
 ```
-## **3. Funciones en Python**
-Las funciones permiten reutilizar código agrupando una serie de instrucciones dentro de un bloque con nombre.
+## **3. Functions in Python**
+Functions allow reusing code by grouping a series of instructions inside a named block.
 
 ```python
-def calcular_area_circulo(radio):
-    return 3.1416 * radio ** 2
+def calculate_circle_area(radius):
+    return 3.1416 * radius ** 2
 
-area = calcular_area_circulo(5)
-print(f"El área del círculo es: {area}")
+area = calculate_circle_area(5)
+print(f"The area of the circle is: {area}")
 ```
-Este código define una función calcular_area_circulo() que recibe un valor radio y retorna el área de un círculo.
+This code defines a function calculate_circle_area() that takes a radius value and returns the area of a circle.
 
-Python es un lenguaje poderoso y versátil que ofrece una sintaxis clara y flexible. Gracias a su tipado dinámico, estructuras de control y soporte para múltiples paradigmas, es utilizado en una amplia gama de aplicaciones, desde desarrollo web hasta inteligencia artificial. Su facilidad de uso y amplia comunidad lo convierten en una excelente opción tanto para principiantes como para programadores experimentados.
+Python is a powerful and versatile language that offers clear and flexible syntax. Thanks to its dynamic typing, control structures, and support for multiple paradigms, it is used in a wide range of applications, from web development to artificial intelligence. Its ease of use and large community make it an excellent choice for both beginners and experienced programmers.
 
-# Programación Orientada a Objetos
+# Object-Oriented Programming (OOP)
 
-La **Programación Orientada a Objetos (POO)** es un paradigma de programación basado en la creación de **objetos** que encapsulan datos y comportamientos en un solo componente. Esta metodología facilita la organización del código, mejora la reutilización y permite modelar problemas de manera más intuitiva (Sebesta, 2019). 
+**Object-Oriented Programming (OOP)** is a programming paradigm based on creating **objects** that encapsulate data and behaviors into a single component. This methodology facilitates **code organization, enhances reusability, and allows for a more intuitive modeling of problems** (Sebesta, 2019). 
 
-Python es un lenguaje que **implementa POO de forma nativa**, permitiendo a los desarrolladores estructurar aplicaciones de manera eficiente mediante la creación de **clases y objetos**. Además, incorpora mecanismos como **encapsulamiento, herencia y polimorfismo**, los cuales optimizan el mantenimiento del software y reducen la redundancia en el código (Martelli et al., 2020).
+Python is a language that **natively supports OOP**, enabling developers to efficiently structure applications through **classes and objects**. Additionally, it incorporates mechanisms such as **encapsulation, inheritance, and polymorphism**, which optimize software maintenance and reduce code redundancy (Martelli et al., 2020).
 
 ---
 
-## **1. Clases y Objetos**
-En POO, una **clase** define una estructura base a partir de la cual se pueden crear **objetos** con características y comportamientos específicos (Stroustrup, 2018). 
+## **1. Classes and Objects**
+In OOP, a **class** defines a base structure from which **objects** can be created, each with specific attributes and behaviors (Stroustrup, 2018). 
 
-Un **objeto** es una instancia de una clase, lo que significa que comparte sus atributos y métodos definidos. Python permite definir clases de manera sencilla utilizando la palabra clave `class`.
+An **object** is an instance of a class, meaning it shares the attributes and methods defined within it. Python allows defining classes easily using the `class` keyword.
 
 ```python
-class Vehiculo:
-    def __init__(self, marca, modelo):
-        self.marca = marca
-        self.modelo = modelo
+class Vehicle:
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
 
-# Creación de un objeto a partir de la clase
-auto = Vehiculo("Toyota", "Corolla")
+# Creating an object from the class
+car = Vehicle("Toyota", "Corolla")
 ```
-Aquí, Vehiculo define una estructura básica con atributos marca y modelo, y auto es una instancia con valores específicos.
+Here, Vehicle defines a basic structure with brand and model attributes, and car is an instance with specific values.
 
-## **2. Principios Fundamentales de POO en Python**
-Python implementa varios principios de POO que permiten mejorar la estructura y eficiencia del código.
+## **2. Fundamental OOP Principles in Python**
+Python implements several OOP principles that improve code structure and efficiency.
 
-### **2.1. Encapsulamiento**
-El encapsulamiento consiste en proteger los datos de un objeto para evitar accesos o modificaciones no controladas. Python permite definir atributos públicos, protegidos y privados mediante convenciones de nombres.
+### **2.1. Encapsulation**
+Encapsulation consists of protecting an object's data to prevent uncontrolled access or modifications. Python allows defining public, protected, and private attributes through naming conventions.
 
 ```python
-class Banco:
-    def __init__(self, saldo):
-        self.__saldo = saldo  # Atributo privado
+class Bank:
+    def __init__(self, balance):
+        self.__balance = balance  # Private attribute
 
-    def ver_saldo(self):
-        return self.__saldo  # Método de acceso controlado
+    def get_balance(self):
+        return self.__balance  # Controlled access method
 ```
-El atributo __saldo es privado y solo puede ser accedido mediante métodos específicos dentro de la misma clase.
+The attribute __balance is private and can only be accessed through specific methods within the class.
 
-### **2.2. Herencia**
-La herencia permite que una clase reutilice atributos y métodos de otra clase existente, evitando la duplicación de código y promoviendo la modularidad (Downey, 2021).
+### **2.2. Inheritance**
+Inheritance allows one class to reuse attributes and methods from another existing class, preventing code duplication and promoting modularity (Downey, 2021).
 
 ```python
-class Persona:
-    def __init__(self, nombre):
-        self.nombre = nombre
+class Person:
+    def __init__(self, name):
+        self.name = name
 
-class Estudiante(Persona):
-    pass  # Hereda todo de la clase Persona
+class Student(Person):
+    pass  # Inherits everything from the Person class
 
-alumno = Estudiante("Laura")
+student = Student("Laura")
 ```
-La clase Estudiante hereda los atributos de Persona sin necesidad de reescribirlos.
+The Student class inherits the attributes from Person without needing to rewrite them.
 
-### **2.3. Polimorfismo**
-El polimorfismo permite que múltiples clases utilicen un mismo método con distintas implementaciones, lo que mejora la flexibilidad del código.
+### **2.3. Polymorphism**
+Polymorphism allows multiple classes to use the same method with different implementations, improving code flexibility.
 
 ```python
-class Guitarra:
-    def sonido(self):
-        return "Suena una melodía."
+class Guitar:
+    def sound(self):
+        return "Plays a melody."
 
-class Bateria:
-    def sonido(self):
-        return "Produce un ritmo."
+class Drums:
+    def sound(self):
+        return "Produces a rhythm."
 
-instrumentos = [Guitarra(), Bateria()]
+instruments = [Guitar(), Drums()]
 
-for i in instrumentos:
-    print(i.sonido())
+for i in instruments:
+    print(i.sound())
 ```
-Ambas clases tienen el método sonido(), pero cada una lo ejecuta de manera diferente.
+Both classes have the sound() method, but each executes it differently.
 
-# Solucion problemas
+# Problem Solutions
 
-## **Problema 1**
-Escribir un programa que lea un entero positivo “n” introducido por el usuario y después muestre 
-en pantalla la suma de todos los enteros desde 1 hasta n . La suma de los primeros enteros 
-positivos puede ser calculada usando: suma = [n(n+1)]/2
+## **Problem 1**
+Write a program that reads a positive integer "n" entered by the user and then displays on the screen the sum of all integers from 1 to n. The sum of the first positive integers can be calculated using: sum = [n(n+1)]/2
 
-### **Solución**
+### **Solution**
 ```python
-# Pedir al usuario que ingrese un número entero
-numero = int(input("¿Cuál es el número?: "))
+# Ask the user to enter an integer
+number = int(input("What is the number?: "))
 
-# Calcular la suma de los primeros n números naturales usando la fórmula: n(n + 1)/2
-suma = (numero * (numero + 1)) / 2
+# Calculate the sum of the first n natural numbers using the formula: n(n + 1)/2
+sum_result = (number * (number + 1)) / 2
 
-# Imprimir el resultado
-print("La suma de todos los números es:", suma)
+# Print the result
+print("The sum of all numbers is:", sum_result)
 ```
-### **Breve descripción**
-Este código solicita al usuario que ingrese un número entero y, utilizando la fórmula matemática [n(n+1)]/2, calcula la suma de los primeros n números naturales. Posteriormente, imprime el resultado en pantalla, mostrando la suma total de los valores desde 1 hasta el número ingresado. Su propósito es ilustrar un cálculo matemático eficiente sin necesidad de bucles.
+### **Brief Description**
+This code prompts the user to enter an integer and, using the mathematical formula [n(n+1)]/2, calculates the sum of the first n natural numbers. It then prints the result on the screen, displaying the total sum of values from 1 to the entered number. Its purpose is to illustrate an efficient mathematical calculation without the need for loops.
 
-## **Problema 2**
-Escribir un programa que pregunte al usuario por el número de horas trabajadas y el costo por hora. Después debe mostrar por pantalla la paga que le corresponde.
+## **Problem 2**
+Write a program that asks the user for the number of hours worked and the hourly rate. Then, it should display the corresponding payment on the screen.
 
-### **Solución**
+### **Solution**
 ```python
-# Se pide al usuario que ingrese el número de horas trabajadas
-horas = int(input("Ingresa el número de horas que has trabajado: "))
+# Ask the user to enter the number of hours worked
+hours = int(input("Enter the number of hours you have worked: "))
 
-# Se pide al usuario que ingrese el costo por hora
-costo = int(input("Ingrese el costo de cada hora trabajada: "))
+# Ask the user to enter the hourly rate
+rate = int(input("Enter the hourly rate: "))
 
-# Calcular el salario total
-salario = horas * costo
+# Calculate the total salary
+salary = hours * rate
 
-# Imprimir el resultado
-print("El salario que te corresponde es de:", salario, "$")
+# Print the result
+print("Your total salary is:", salary, "$")
 ```
-### **Breve descripción**
-Este código solicita al usuario que ingrese la cantidad de horas trabajadas y el costo por hora, luego multiplica ambos valores para calcular el salario total. Finalmente, muestra el resultado en pantalla, indicando el monto que corresponde al trabajador en función del tiempo laborado y la tarifa establecida por hora.
+### **Brief Description**
+This code prompts the user to enter the number of hours worked and the hourly rate, then multiplies both values to calculate the total salary. Finally, it displays the result on the screen, indicating the amount the worker is entitled to based on the time worked and the established hourly rate.
 
-## **Problema 3**
-Crea una lista de nombre + sueldo por hora + horas trabajadas de al menos seis operadores. Imprime el nombre y el sueldo a pagar de cada operador.
+## **Problem 3**
+Create a list containing the name, hourly wage, and hours worked for at least six operators. Print the name and total salary for each operator.
 
-### **Solución**
+### **Solution**
 ```python
-# Lista que almacenará la información de los operadores
-operadores = [
+# List to store operator information
+operators = [
     ["Juan", 15, 10],
     ["Enrique", 7, 55],
     ["Carlos", 19, 32],
@@ -213,324 +210,325 @@ operadores = [
     ["Malcolm", 21, 20]
 ]
 
-# Imprimir encabezado
-print("\nLista de sueldos de operadores:")
+# Print header
+print("\nList of operator salaries:")
 
-# Iterar sobre cada operador, calcular su sueldo y mostrar la información
-for operador in operadores:
-    nombre = operador[0]  # Nombre del operador
-    sueldo_por_hora = operador[1]  # Sueldo por hora
-    horas_trabajadas = operador[2]  # Horas trabajadas
-    sueldo_total = sueldo_por_hora * horas_trabajadas  # Cálculo del sueldo total
+# Iterate over each operator, calculate their salary, and display the information
+for operator in operators:
+    name = operator[0]  # Operator's name
+    hourly_wage = operator[1]  # Hourly wage
+    hours_worked = operator[2]  # Hours worked
+    total_salary = hourly_wage * hours_worked  # Total salary calculation
 
-    # Imprimir resultado formateado
-    print(f"Operador: {nombre}, Sueldo total: ${sueldo_total:.2f}")
+    # Print formatted result
+    print(f"Operator: {name}, Total salary: ${total_salary:.2f}")
 ```
-### **Breve descripción**
-Este código almacena en una lista la información de varios operadores, incluyendo su nombre, sueldo por hora y cantidad de horas trabajadas. Luego, recorre la lista y para cada operador, calcula su sueldo total multiplicando el sueldo por hora por las horas trabajadas. Finalmente, imprime en pantalla el nombre del operador junto con el monto correspondiente a su salario, formateado con dos decimales para mayor claridad.
+### **Brief Description**
+This code stores information about several operators in a list, including their name, hourly wage, and hours worked. Then, it iterates through the list and, for each operator, calculates their total salary by multiplying the hourly wage by the hours worked. Finally, it prints the operator’s name along with the corresponding salary amount, formatted with two decimal places for clarity.
 
-## **Problema 4**
-Crea una lista llamada numeros que contenga al menos 10 números. Calcula el promedio de los números pares y el producto de los números impares. Imprime los resultados.
+## **Problem 4**
+Create a list named `numbers` containing at least 10 numbers. Calculate the average of the even numbers and the product of the odd numbers. Print the results.
 
-### **Solución**
+### **Solution**
 ```python
-# Definir una lista de números
-valores = [7, 1, 2, 6, 14, 35, 17, 28, 59, 4]
+# Define a list of numbers
+values = [7, 1, 2, 6, 14, 35, 17, 28, 59, 4]
 
-# Listas vacías para almacenar pares e impares
-pares_lista = []
-impares_lista = []
+# Empty lists to store even and odd numbers
+even_numbers = []
+odd_numbers = []
 
-# Recorrer la lista y clasificar los números en pares e impares
-for valor in valores:
-    if valor % 2 == 0:  # Si el residuo es cero, es par
-        pares_lista.append(valor)
+# Iterate through the list and classify numbers as even or odd
+for value in values:
+    if value % 2 == 0:  # If the remainder is zero, it is even
+        even_numbers.append(value)
     else:
-        impares_lista.append(valor)  # Sino, es impar
+        odd_numbers.append(value)  # Otherwise, it is odd
 
-# Calcular el promedio de los números pares
-if len(pares_lista) > 0:
-    suma_pares = sum(pares_lista)
-    cantidad_pares = len(pares_lista)
-    promedio_pares = suma_pares / cantidad_pares
+# Calculate the average of the even numbers
+if len(even_numbers) > 0:
+    sum_evens = sum(even_numbers)
+    count_evens = len(even_numbers)
+    average_evens = sum_evens / count_evens
 else:
-    promedio_pares = 0  # Evita la división por cero
+    average_evens = 0  # Prevents division by zero
 
-# Calcular el producto de los números impares sin usar math.prod()
-if len(impares_lista) > 0:
-    producto_impares = 1  # Inicializamos en 1 porque multiplicar por 0 daría siempre 0
-    for num in impares_lista:
-        producto_impares *= num  # Multiplicamos cada número impar en la lista
+# Calculate the product of the odd numbers without using math.prod()
+if len(odd_numbers) > 0:
+    product_odds = 1  # Initialized to 1 because multiplying by 0 would always give 0
+    for num in odd_numbers:
+        product_odds *= num  # Multiply each odd number in the list
 else:
-    producto_impares = 0  # Si no hay impares, el producto es 0
+    product_odds = 0  # If there are no odd numbers, the product is 0
 
-# Imprimir la información
-print("Lista de números:", valores)
-print("Números pares:", pares_lista)
-print("Números impares:", impares_lista)
-print("Promedio de pares:", promedio_pares)
-print("Producto de impares:", producto_impares)
+# Print the information
+print("List of numbers:", values)
+print("Even numbers:", even_numbers)
+print("Odd numbers:", odd_numbers)
+print("Average of evens:", average_evens)
+print("Product of odds:", product_odds)
 ```
-### **Breve descripción**
-Este código define una lista de números y los clasifica en dos listas separadas: una para los números pares y otra para los impares. Luego, calcula el promedio de los números pares sumando sus valores y dividiéndolos por la cantidad de elementos, asegurándose de evitar una división por cero. Posteriormente, obtiene el producto de los números impares multiplicando todos sus valores sin utilizar librerias externas. Finalmente, imprime en pantalla la lista original junto con los números pares, impares, su promedio y el producto de los impares.
+### **Brief Description**
+This code defines a list of numbers and classifies them into two separate lists: one for even numbers and another for odd numbers. It then calculates the average of the even numbers by summing their values and dividing them by the number of elements, ensuring that division by zero is avoided. Next, it calculates the product of the odd numbers by multiplying all their values without using external libraries. Finally, it prints the original list along with the even numbers, odd numbers, their average, and the product of the odd numbers.
 
-## **Problema 5**
-Crea un programa que solicite al usuario adivinar un número secreto. El programa debe generar un número aleatorio entre 1 y 10, y el usuario debe intentar adivinarlo. El programa debe proporcionar pistas si el número ingresado por el usuario es demasiado alto o bajo. El bucle while debe continuar hasta que el usuario adivine correctamente. Al final se debe imprimir en cuantos intentos el usuario logró adivinar el número.
+## **Problem 5**
+Create a program that asks the user to guess a secret number. The program must generate a random number between 1 and 10, and the user must try to guess it. The program should provide hints if the number entered by the user is too high or too low. The while loop must continue until the user guesses correctly. At the end, it should print how many attempts it took for the user to guess the number.
 
-### **Solución**
+### **Solution**
 ```python
-from random import randint #Generamos números aleatorios con esto
+from random import randint  # Generates random numbers
 
-# Generar un número aleatorio entre 1 y 10
-numero_secreto = randint(1, 10)
+# Generate a random number between 1 and 10
+secret_number = randint(1, 10)
 
-# Contador de intentos
-veces = 0
+# Attempt counter
+attempts = 0
 
-# Bucle infinito hasta que el usuario adivine el número
+# Infinite loop until the user guesses the number
 while True:
     try:
-        # Incrementar el contador de intentos
-        veces += 1
+        # Increment the attempt counter
+        attempts += 1
 
-        # Pedir al usuario que ingrese un número
-        suposicion = int(input("Introduce un número entre 1 y 10: "))
+        # Ask the user to enter a number
+        guess = int(input("Enter a number between 1 and 10: "))
 
-        # Comparar con el número secreto
-        if suposicion > numero_secreto:
-            print("El número secreto es menor.")
-        elif suposicion < numero_secreto:
-            print("El número secreto es mayor.")
+        # Compare with the secret number
+        if guess > secret_number:
+            print("The secret number is lower.")
+        elif guess < secret_number:
+            print("The secret number is higher.")
         else:
-            # Si el número es correcto, termina el juego
-            print(f"¡Bien hecho! Adivinaste el número en {veces} intentos.")
-            break  # Sale del bucle
+            # If the number is correct, end the game
+            print(f"Well done! You guessed the number in {attempts} attempts.")
+            break  # Exit the loop
 
     except ValueError:
-        print("Entrada inválida, ingresa un número válido.")
+        print("Invalid input, please enter a valid number.")
 ```
-### **Breve descripción**
-Este código implementa un juego de adivinanza de números en el que el programa genera un número aleatorio entre 1 y 10, y el usuario debe intentar adivinarlo. Se inicializa un contador de intentos, y en un bucle infinito, el usuario introduce un número. Si el número ingresado es mayor o menor que el número secreto, el programa da una pista. Si el usuario acierta, se muestra un mensaje indicando el número de intentos realizados y el juego finaliza. Además, el código maneja errores en caso de que el usuario introduzca un valor no numérico, asegurando una ejecución robusta.
+### **Brief Description**
+This code implements a number guessing game, where the program generates a random number between 1 and 10, and the user must try to guess it. An attempt counter is initialized, and within an infinite loop, the user inputs a number. If the number entered is higher or lower than the secret number, the program provides a hint. If the user guesses correctly, a message is displayed indicating the number of attempts taken, and the game ends. Additionally, the code includes error handling to prevent crashes if the user enters a non-numeric value.
 
-## **Problema 6**
-El programa debe generar una matriz de al menos 5x5. El robot inicia su camino en la posición (0,0) de la matriz y debe salir en la posición (4,4) o la máxima posición si se cambia el tamaño de matriz. El numero y la posición de los obstáculos es aleatoria. El robot solo puede avanzar, girar a la izquierda o a la derecha para buscar un camino libre, en el eventual caso que el robot no pueda salir debe imprimir en pantalla “Imposible llegar al destino”. En caso de que el robot llegue a su destino final deberá imprimir el mapa, con los espacios libres y obstáculos de la siguiente forma X obstáculo o libre. Deberá imprimir también la ruta que siguió. Mostrar un segundo mapa con el “camino” seguido por el robot mediante flechas 
+## **Problem 6**
+The program must generate a matrix of at least 5x5. The robot starts at position (0,0) and must exit at position (4,4) or the maximum position if the matrix size is changed. The number and position of obstacles are random. The robot can only move forward, turn left, or turn right to find an open path. If the robot cannot exit, it must print "No route available." If the robot reaches its final destination, it should print the map with free spaces and obstacles in the following format, where X represents an obstacle and o represents a free space. Additionally, the program must display the route followed by the robot with arrows.
 
-### **Solución**
+### **Solution**
 ```python
 import random
 
-# Definir tamaño del mapa
-tamaño = 5
+# Define the map size
+size = 5
 
-# Crear la matriz del terreno con espacios libres representados por "o"
-terreno = [['o' for _ in range(tamaño)] for _ in range(tamaño)]
+# Create a terrain matrix with open spaces represented by "o"
+terrain = [['o' for _ in range(size)] for _ in range(size)]
 
-# Definir posición inicial y destino
-pos_actual = (0, 0)
-pos_final = (tamaño - 1, tamaño - 1)
+# Define the initial position and destination
+current_pos = (0, 0)
+goal_pos = (size - 1, size - 1)
 
-# Almacenar la ruta recorrida
-trayectoria = []
+# Store the traveled path
+path = []
 
-# Direcciones de movimiento disponibles
-movs = ['D', 'B', 'I', 'A']
-direc = 'D'
+# Available movement directions
+directions = ['R', 'D', 'L', 'U']
+current_dir = 'R'
 
-# Generar obstáculos aleatorios en el mapa sin bloquear el inicio ni la meta
-num_obstaculos = random.randint(tamaño, tamaño * 2)
-for _ in range(num_obstaculos):
+# Generate random obstacles on the map without blocking the start or end positions
+num_obstacles = random.randint(size, size * 2)
+for _ in range(num_obstacles):
     while True:
-        fila, col = random.randint(0, tamaño - 1), random.randint(0, tamaño - 1)
-        if (fila, col) not in [(0, 0), pos_final]:  # Evitar bloquear la entrada y salida
-            terreno[fila][col] = 'X'
+        row, col = random.randint(0, size - 1), random.randint(0, size - 1)
+        if (row, col) not in [(0, 0), goal_pos]:  # Avoid blocking entry and exit
+            terrain[row][col] = 'X'
             break
 
-# Añadir posición inicial al camino recorrido
-trayectoria.append(pos_actual)
+# Add the initial position to the path
+path.append(current_pos)
 
-# Diccionario de desplazamientos
-desplazamiento = {
-    'D': (0, 1),   # Derecha
-    'I': (0, -1),  # Izquierda
-    'A': (-1, 0),  # Arriba
-    'B': (1, 0)    # Abajo
+# Dictionary of movements
+movement = {
+    'R': (0, 1),   # Right
+    'L': (0, -1),  # Left
+    'U': (-1, 0),  # Up
+    'D': (1, 0)    # Down
 }
 
-# Función anónima para verificar si un movimiento es válido
-es_valido = lambda x, y: 0 <= x < tamaño and 0 <= y < tamaño and terreno[x][y] != 'X'
+# Lambda function to verify if a movement is valid
+is_valid = lambda x, y: 0 <= x < size and 0 <= y < size and terrain[x][y] != 'X'
 
-# Iniciar movimiento del robot
-fila, col = pos_actual
-while (fila, col) != pos_final:
-    mov_exitoso = False
-    dx, dy = desplazamiento[direc]
-    nueva_fila, nueva_col = fila + dx, col + dy
+# Start robot movement
+row, col = current_pos
+while (row, col) != goal_pos:
+    successful_move = False
+    dx, dy = movement[current_dir]
+    new_row, new_col = row + dx, col + dy
 
-    if es_valido(nueva_fila, nueva_col):
-        fila, col = nueva_fila, nueva_col
-        trayectoria.append((fila, col))
-        mov_exitoso = True
+    if is_valid(new_row, new_col):
+        row, col = new_row, new_col
+        path.append((row, col))
+        successful_move = True
     else:
-        direc = movs[(movs.index(direc) + 1) % 4]  # Cambia de dirección en sentido horario
+        current_dir = directions[(directions.index(current_dir) + 1) % 4]  # Rotate direction clockwise
 
-    if not mov_exitoso and not any(es_valido(fila + dx, col + dy) for dx, dy in desplazamiento.values()):
-        print("\nNo hay ruta disponible.")
+    if not successful_move and not any(is_valid(row + dx, col + dy) for dx, dy in movement.values()):
+        print("\nNo route available.")
         break
 
-# Mostrar resultados
-if (fila, col) == pos_final:
-    print("\nEl robot llegó al destino.")
+# Display results
+if (row, col) == goal_pos:
+    print("\nThe robot reached the destination.")
 
-# Imprimir el mapa del terreno con la trayectoria recorrida
-print("\nMapa del Terreno:")
-for i in range(tamaño):
-    for j in range(tamaño):
-        if (i, j) in trayectoria:
-            print("*", end=" ")  # Marca el camino con "*"
+# Print the terrain map with the traveled path
+print("\nTerrain Map:")
+for i in range(size):
+    for j in range(size):
+        if (i, j) in path:
+            print("*", end=" ")  # Mark the path with "*"
         else:
-            print(terreno[i][j], end=" ")
+            print(terrain[i][j], end=" ")
     print()
 
-# Crear una nueva matriz para visualizar la trayectoria con flechas
-mapa_flechas = [['o' for _ in range(tamaño)] for _ in range(tamaño)]
-indicadores = {(0, 1): '→', (0, -1): '←', (-1, 0): '↑', (1, 0): '↓'}
+# Create a new matrix to visualize the path with arrows
+arrow_map = [['o' for _ in range(size)] for _ in range(size)]
+arrow_keys = {(0, 1): '→', (0, -1): '←', (-1, 0): '↑', (1, 0): '↓'}
 
-for k in range(len(trayectoria) - 1):
-    f1, c1 = trayectoria[k]
-    f2, c2 = trayectoria[k + 1]
-    dx, dy = f2 - f1, c2 - c1
-    mapa_flechas[f1][c1] = indicadores[(dx, dy)]
+for k in range(len(path) - 1):
+    r1, c1 = path[k]
+    r2, c2 = path[k + 1]
+    dx, dy = r2 - r1, c2 - c1
+    arrow_map[r1][c1] = arrow_keys[(dx, dy)]
 
-mapa_flechas[pos_final[0]][pos_final[1]] = 'F'  # Marca la meta con 'F'
+arrow_map[goal_pos[0]][goal_pos[1]] = 'F'  # Mark the goal with 'F'
 
-print("\nMapa con la Ruta Seguida:")
-for fila in mapa_flechas:
-    print(" ".join(fila))
+print("\nMap with the Traveled Route:")
+for row in arrow_map:
+    print(" ".join(row))
 ```
-### **Breve descripción**
-Este código simula un robot explorador en un terreno representado por una matriz de tamaño 5x5. El robot comienza en la posición (0,0) y debe encontrar un camino hasta la meta en la esquina inferior derecha. A lo largo del mapa, se generan obstáculos aleatorios (X) que el robot debe evitar.
+### **Brief Description**
+This code simulates an exploring robot on a 5x5 terrain matrix. The robot starts at position (0,0) and must find a way to the goal in the bottom-right corner while avoiding randomly placed obstacles (X). It moves in four possible directions (R: right, D: down, L: left, U: up), and if blocked, it rotates clockwise until it finds an open path.
 
-El robot sigue una estrategia de exploración moviéndose en cuatro direcciones posibles (D: derecha, B: abajo, I: izquierda, A: arriba). Si encuentra un obstáculo o un límite del mapa, cambia su dirección en sentido horario hasta hallar un camino libre.
+The traveled path is recorded and displayed using *, while another map represents the movement using arrows (→, ↓, ↑, ←). If the robot finds no way out, it prints "No route available." Otherwise, it confirms "The robot reached the destination."
 
-La trayectoria recorrida se almacena en una lista y se representa visualmente en un mapa con *, mientras que en otro mapa se usan flechas (→, ↓, ↑, ←) para indicar la dirección del movimiento. Si el robot no encuentra salida, el programa imprime "No hay ruta disponible.". En caso de éxito, muestra "El robot llegó al destino.", junto con el mapa de su recorrido.
+## **Problem 7**
+A store wants to manage its product inventory. To do this, you must implement a system in Python that allows:  
+- Creating products, each with a name, price, and stock quantity.  
+- Updating the stock quantity when products are sold.  
+- Displaying product information with its availability.  
+- Calculating the total inventory value (price × quantity of each product).  
 
-## **Problema 7**
-Una tienda quiere gestionar su inventario de productos. Para ello, debes implementar un sistema 
-en Python que permita: 
-- Crear productos, cada uno con un nombre, precio y cantidad en stock. 
-- Actualizar la cantidad en stock cuando se venden productos. 
-- Mostrar la información de un producto con su disponibilidad. 
-- Calcular el valor total del inventario (precio × cantidad de cada producto).
+### **Explained Solution**
+This code implements a **product inventory system** using **Object-Oriented Programming (OOP)**. The program allows adding, selling, querying, and displaying products, ensuring that the inventory is properly managed.
 
-### **Solución explicada**
-Este código implementa un sistema de inventario de productos usando Programación Orientada a Objetos (POO). El programa permite agregar, vender, consultar y visualizar productos, asegurando que el inventario se gestione correctamente.
+---
 
-#### **Importación de librerias**
+## **Library Import**
 ```python
 import random
 ```
-import random: Se importa la librería random, que será utilizada para generar IDs aleatorios para los productos dentro del inventario.
+import random: The random library is imported, which will be used to generate random IDs for the products in the inventory.
 
-#### **Clase Producto: Representación de un Producto**
-Esta clase define la estructura básica de un producto, incluyendo ID, nombre, precio y cantidad en stock.
+#### **Class Producto: Representation of a Product**
+This class defines the basic structure of a product, including ID, name, price, and stock quantity.
 
 ```python
 class Producto:
     def __init__(self, id_producto, nombre, precio, cantidad):
-        """Inicializa un producto con su ID, nombre, precio y cantidad en stock."""
+        """Initializes a product with its ID, name, price, and stock quantity."""
         self.id = id_producto
         self.nombre = nombre
         self.precio = precio
         self.stock = cantidad  
 ```
-- self.id: Almacena el identificador único del producto.
-- self.nombre: Guarda el nombre del producto.
-- self.precio: Representa el precio unitario del producto.
-- self.stock: Indica la cantidad disponible del producto en el inventario.
+- self.id: Stores the unique identifier of the product.
+- self.nombre: Stores the product's name.
+- self.precio: Represents the unit price of the product.
+- self.stock: Indicates the available quantity of the product in inventory.
 
-#### **Método vender(): Reduce el Stock al Vender un Producto**
+#### **Method vender(): Reduces Stock When Selling a Product**
 ```python
 def vender(self, cantidad):
-    """Reduce la cantidad en stock cuando se realiza una venta."""
+    """Reduces the stock quantity when a sale is made."""
     if cantidad > self.stock:
-        return False  # No hay suficiente stock para la venta
-    self.stock -= cantidad  # Se descuenta la cantidad vendida del stock
-    return True  # Indica que la venta fue exitosa
+        return False  # Not enough stock for the sale
+    self.stock -= cantidad  # The sold quantity is deducted from the stock
+    return True  # Indicates that the sale was successful
 ```
-- Verifica si hay suficiente stock disponible antes de proceder con la venta.
-- Si hay stock suficiente, lo reduce y devuelve True.
-- Si no hay stock suficiente, devuelve False.
+- Verifies if there is enough stock before proceeding with the sale.
+- If sufficient stock is available, it is reduced, and True is returned.
+- If there is not enough stock, it returns False.
 
-#### **Método info(): Muestra Información del Producto**
+#### **Method info(): Displays Product Information**
 ```python
 def info(self):
-    """Devuelve una cadena con la información del producto."""
-    estado = "Disponible" if self.stock > 0 else "No disponible"
-    return f"ID: {self.id} | {self.nombre} | ${self.precio:.2f} | Stock: {self.stock} | Estado: {estado}"
+    """Returns a string with the product's information."""
+    estado = "Available" if self.stock > 0 else "Not available"
+    return f"ID: {self.id} | {self.nombre} | ${self.precio:.2f} | Stock: {self.stock} | Status: {estado}"
 ```
-- Retorna una cadena con los detalles del producto.
-- Si el stock es mayor a 0, el estado será "Disponible", de lo contrario "No disponible".
+- Returns a string with the product details.
+- If the stock is greater than 0, the status will be "Available"; otherwise, "Not available".
 
-#### **Clase Inventario: Gestión de Productos**
-Esta clase maneja la agregación, venta, consulta y visualización de productos en el inventario.
+#### **Class Inventario: Product Management**
+This class handles adding, selling, querying, and displaying products in the inventory.
+
 ```python
 class Inventario:
     def __init__(self):
-        """Inicializa un diccionario vacío para almacenar los productos."""
+        """Initializes an empty dictionary to store products."""
         self.productos = {}
 ```
-- self.productos: Un diccionario que almacena los productos en formato {ID: Producto}.
+- self.productos: A dictionary that stores products in the format {ID: Producto}.
 
-#### **Método agregar_producto(): Añade Productos al Inventario**
+#### **Method agregar_producto(): Adds Products to Inventory**
 ```python
 def agregar_producto(self, nombre, precio, cantidad):
-    """Añade un producto con un ID único generado aleatoriamente."""
-    id_producto = random.randint(1000, 9999)  # Genera un ID aleatorio único
+    """Adds a product with a randomly generated unique ID."""
+    id_producto = random.randint(1000, 9999)  # Generates a unique random ID
     while id_producto in self.productos:
         id_producto = random.randint(1000, 9999)
 
     self.productos[id_producto] = Producto(id_producto, nombre, precio, cantidad)
-    print(f"\nProducto añadido: {nombre} (ID: {id_producto})")
+    print(f"\nProduct added: {nombre} (ID: {id_producto})")
 ```
-- Genera un ID aleatorio entre 1000 y 9999.
-- Verifica que el ID sea único antes de agregarlo al diccionario.
-- Crea una instancia de Producto y la almacena en self.productos.
+- Generates a random ID between 1000 and 9999.
+- Ensures the ID is unique before adding it to the dictionary.
+- Creates an instance of Producto and stores it in self.productos.
 
-#### **Método vender_producto(): Reduce Stock o Elimina Productos**
+#### **Method vender_producto(): Reduces Stock or Removes Products**
 ```python
 def vender_producto(self, id_producto, cantidad):
-    """Vende un producto si existe en el inventario y hay suficiente stock disponible."""
+    """Sells a product if it exists in inventory and there is enough stock available."""
     producto = self.productos.get(id_producto)
     if not producto:
-        print("\nNo existe un producto con ese ID.")
+        print("\nNo product found with this ID.")
     elif producto.vender(cantidad):
-        print(f"\nVenta realizada: {cantidad} unidades de '{producto.nombre}'.")
+        print(f"\nSale completed: {cantidad} units of '{producto.nombre}'.")
         if producto.stock == 0:
-            print(f"'{producto.nombre}' se agotó y fue eliminado.")
+            print(f"'{producto.nombre}' is out of stock and has been removed.")
             del self.productos[id_producto]
     else:
-        print(f"\nStock insuficiente. Quedan {producto.stock} unidades.")
+        print(f"\nInsufficient stock. {producto.stock} units remaining.")
 ```
-- Busca el producto en el inventario.
-- Si existe, intenta vender la cantidad indicada.
-- Si el stock llega a 0, elimina el producto del inventario.
+- Searches for the product in inventory.
+- If it exists, it attempts to sell the specified quantity.
+- If the stock reaches 0, the product is removed from inventory.
 
-#### **Clase Tienda: Manejo del Menú e Interacción con el Usuario**
-Esta clase se encarga de gestionar la interacción con el usuario a través de un menú.
+#### **Class Tienda: Menu Management and User Interaction**
+This class is responsible for managing user interaction through a menu.
+
 ```python
 class Tienda:
     def __init__(self):
-        """Inicializa la tienda creando un objeto de la clase Inventario y ejecutando el menú principal."""
+        """Initializes the store by creating an instance of the Inventory class and executing the main menu."""
         self.inventario = Inventario()
         self.ejecutar()
 ```
-- Crea una instancia de Inventario.
-- Ejecuta el menú al inicializarse.
+- Creates an instance of Inventario.
+- Executes the menu upon initialization.
 
-#### **Método ejecutar(): Menú Principal**
+#### **Method ejecutar(): Main Menu**
 ```python
 def ejecutar(self):
-    """Ejecuta el menú de opciones y permite la interacción con el usuario."""
+    """Runs the menu options and allows user interaction."""
     opciones = {
         "1": self.agregar,
         "2": self.vender,
@@ -540,34 +538,34 @@ def ejecutar(self):
         "6": exit
     }
     while True:
-        print("\nMenú:")
-        print(" 1. Agregar producto")
-        print(" 2. Vender producto")
-        print(" 3. Consultar producto agregado (ID, nombre, precio y stock)")
-        print(" 4. Mostrar todos los productos")
-        print(" 5. Ver valor total del inventario")
-        print(" 6. Salir")
+        print("\nMenu:")
+        print(" 1. Add product")
+        print(" 2. Sell product")
+        print(" 3. Query product (ID, name, price, and stock)")
+        print(" 4. Show all products")
+        print(" 5. View total inventory value")
+        print(" 6. Exit")
 
-        opcion = input("Selecciona una opción: ")
+        opcion = input("Select an option: ")
         opciones.get(opcion, self.error)()
 ```
-- Muestra las opciones disponibles en el sistema.
-- Asocia cada opción a un método mediante un diccionario.
-- Ejecuta la función correspondiente según la opción seleccionada.
+- Displays the available options in the system.
+- Associates each option with a method using a dictionary.
+- Executes the corresponding function based on the selected option.
 
-#### **Ejecución del Programa**
+#### **Program Execution**
 ```python
-# Ejecutar el programa
+# Run the program
 Tienda()
 ```
-- Inicia el programa creando una instancia de Tienda.
-- El menú se activa automáticamente, permitiendo la interacción con el usuario.
+- Starts the program by creating an instance of Tienda.
+- The menu is automatically activated, allowing user interaction.
 
-# Librerias usadas
+# Libraries Used
 
-En este laboratorio se utilizó la libreria de random la cual nos permite generar números aleatorios.
+In this laboratory, the random library was used, which allows generating random numbers. This was specifically used to assign unique product IDs dynamically.
 
-# Referencias
+# References
 - Downey, A. (2015). Think Python: How to Think Like a Computer Scientist. O'Reilly Media.
 - Shaw, Z. (2019). Learn Python 3 the Hard Way. Addison-Wesley.
 - Zelle, J. (2016). Python Programming: An Introduction to Computer Science. Franklin, Beedle & Associates.
