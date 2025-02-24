@@ -91,7 +91,7 @@ Python es un lenguaje que **implementa POO de forma nativa**, permitiendo a los 
 
 ---
 
-## **1. Clases y Objetos en Python**
+## **1. Clases y Objetos**
 En POO, una **clase** define una estructura base a partir de la cual se pueden crear **objetos** con características y comportamientos específicos (Stroustrup, 2018). 
 
 Un **objeto** es una instancia de una clase, lo que significa que comparte sus atributos y métodos definidos. Python permite definir clases de manera sencilla utilizando la palabra clave `class`.
@@ -157,9 +157,273 @@ for i in instrumentos:
 ```
 Ambas clases tienen el método sonido(), pero cada una lo ejecuta de manera diferente.
 
-La Programación Orientada a Objetos (POO) en Python, promueve la reutilización y reduce la complejidad de los programas. Aplicando encapsulamiento, herencia y polimorfismo, los desarrolladores pueden escribir código más limpio y estructurado.
-
 # Solucion problemas
+
+## **Problema 1**
+Escribir un programa que lea un entero positivo “n” introducido por el usuario y después muestre 
+en pantalla la suma de todos los enteros desde 1 hasta n . La suma de los primeros enteros 
+positivos puede ser calculada usando: suma = [n(n+1)]/2
+
+### **Solución**
+```python
+# Pedir al usuario que ingrese un número entero
+numero = int(input("¿Cuál es el número?: "))
+
+# Calcular la suma de los primeros n números naturales usando la fórmula: n(n + 1)/2
+suma = (numero * (numero + 1)) / 2
+
+# Imprimir el resultado
+print("La suma de todos los números es:", suma)
+```
+### **Breve descripción**
+Este código solicita al usuario que ingrese un número entero y, utilizando la fórmula matemática [n(n+1)]/2, calcula la suma de los primeros n números naturales. Posteriormente, imprime el resultado en pantalla, mostrando la suma total de los valores desde 1 hasta el número ingresado. Su propósito es ilustrar un cálculo matemático eficiente sin necesidad de bucles.
+
+## **Problema 2**
+Escribir un programa que pregunte al usuario por el número de horas trabajadas y el costo por hora. Después debe mostrar por pantalla la paga que le corresponde.
+
+### **Solución**
+```python
+# Se pide al usuario que ingrese el número de horas trabajadas
+horas = int(input("Ingresa el número de horas que has trabajado: "))
+
+# Se pide al usuario que ingrese el costo por hora
+costo = int(input("Ingrese el costo de cada hora trabajada: "))
+
+# Calcular el salario total
+salario = horas * costo
+
+# Imprimir el resultado
+print("El salario que te corresponde es de:", salario, "$")
+```
+### **Breve descripción**
+Este código solicita al usuario que ingrese la cantidad de horas trabajadas y el costo por hora, luego multiplica ambos valores para calcular el salario total. Finalmente, muestra el resultado en pantalla, indicando el monto que corresponde al trabajador en función del tiempo laborado y la tarifa establecida por hora.
+
+## **Problema 3**
+Crea una lista de nombre + sueldo por hora + horas trabajadas de al menos seis operadores. Imprime el nombre y el sueldo a pagar de cada operador.
+
+### **Solución**
+```python
+# Lista que almacenará la información de los operadores
+operadores = [
+    ["Juan", 15, 10],
+    ["Enrique", 7, 55],
+    ["Carlos", 19, 32],
+    ["Maria", 11, 31],
+    ["Henry", 10, 75],
+    ["Malcolm", 21, 20]
+]
+
+# Imprimir encabezado
+print("\nLista de sueldos de operadores:")
+
+# Iterar sobre cada operador, calcular su sueldo y mostrar la información
+for operador in operadores:
+    nombre = operador[0]  # Nombre del operador
+    sueldo_por_hora = operador[1]  # Sueldo por hora
+    horas_trabajadas = operador[2]  # Horas trabajadas
+    sueldo_total = sueldo_por_hora * horas_trabajadas  # Cálculo del sueldo total
+
+    # Imprimir resultado formateado
+    print(f"Operador: {nombre}, Sueldo total: ${sueldo_total:.2f}")
+```
+### **Breve descripción**
+Este código almacena en una lista la información de varios operadores, incluyendo su nombre, sueldo por hora y cantidad de horas trabajadas. Luego, recorre la lista y para cada operador, calcula su sueldo total multiplicando el sueldo por hora por las horas trabajadas. Finalmente, imprime en pantalla el nombre del operador junto con el monto correspondiente a su salario, formateado con dos decimales para mayor claridad.
+
+## **Problema 4**
+Crea una lista llamada numeros que contenga al menos 10 números. Calcula el promedio de los números pares y el producto de los números impares. Imprime los resultados.
+
+### **Solución**
+```python
+# Definir una lista de números
+valores = [7, 1, 2, 6, 14, 35, 17, 28, 59, 4]
+
+# Listas vacías para almacenar pares e impares
+pares_lista = []
+impares_lista = []
+
+# Recorrer la lista y clasificar los números en pares e impares
+for valor in valores:
+    if valor % 2 == 0:  # Si el residuo es cero, es par
+        pares_lista.append(valor)
+    else:
+        impares_lista.append(valor)  # Sino, es impar
+
+# Calcular el promedio de los números pares
+if len(pares_lista) > 0:
+    suma_pares = sum(pares_lista)
+    cantidad_pares = len(pares_lista)
+    promedio_pares = suma_pares / cantidad_pares
+else:
+    promedio_pares = 0  # Evita la división por cero
+
+# Calcular el producto de los números impares sin usar math.prod()
+if len(impares_lista) > 0:
+    producto_impares = 1  # Inicializamos en 1 porque multiplicar por 0 daría siempre 0
+    for num in impares_lista:
+        producto_impares *= num  # Multiplicamos cada número impar en la lista
+else:
+    producto_impares = 0  # Si no hay impares, el producto es 0
+
+# Imprimir la información
+print("Lista de números:", valores)
+print("Números pares:", pares_lista)
+print("Números impares:", impares_lista)
+print("Promedio de pares:", promedio_pares)
+print("Producto de impares:", producto_impares)
+```
+### **Breve descripción**
+Este código define una lista de números y los clasifica en dos listas separadas: una para los números pares y otra para los impares. Luego, calcula el promedio de los números pares sumando sus valores y dividiéndolos por la cantidad de elementos, asegurándose de evitar una división por cero. Posteriormente, obtiene el producto de los números impares multiplicando todos sus valores sin utilizar librerias externas. Finalmente, imprime en pantalla la lista original junto con los números pares, impares, su promedio y el producto de los impares.
+
+## **Problema 5**
+Crea un programa que solicite al usuario adivinar un número secreto. El programa debe generar un número aleatorio entre 1 y 10, y el usuario debe intentar adivinarlo. El programa debe proporcionar pistas si el número ingresado por el usuario es demasiado alto o bajo. El bucle while debe continuar hasta que el usuario adivine correctamente. Al final se debe imprimir en cuantos intentos el usuario logró adivinar el número.
+
+### **Solución**
+```python
+from random import randint #Generamos números aleatorios con esto
+
+# Generar un número aleatorio entre 1 y 10
+numero_secreto = randint(1, 10)
+
+# Contador de intentos
+veces = 0
+
+# Bucle infinito hasta que el usuario adivine el número
+while True:
+    try:
+        # Incrementar el contador de intentos
+        veces += 1
+
+        # Pedir al usuario que ingrese un número
+        suposicion = int(input("Introduce un número entre 1 y 10: "))
+
+        # Comparar con el número secreto
+        if suposicion > numero_secreto:
+            print("El número secreto es menor.")
+        elif suposicion < numero_secreto:
+            print("El número secreto es mayor.")
+        else:
+            # Si el número es correcto, termina el juego
+            print(f"¡Bien hecho! Adivinaste el número en {veces} intentos.")
+            break  # Sale del bucle
+
+    except ValueError:
+        print("Entrada inválida, ingresa un número válido.")
+```
+### **Breve descripción**
+Este código implementa un juego de adivinanza de números en el que el programa genera un número aleatorio entre 1 y 10, y el usuario debe intentar adivinarlo. Se inicializa un contador de intentos, y en un bucle infinito, el usuario introduce un número. Si el número ingresado es mayor o menor que el número secreto, el programa da una pista. Si el usuario acierta, se muestra un mensaje indicando el número de intentos realizados y el juego finaliza. Además, el código maneja errores en caso de que el usuario introduzca un valor no numérico, asegurando una ejecución robusta.
+
+## **Problema 6**
+El programa debe generar una matriz de al menos 5x5. El robot inicia su camino en la posición (0,0) de la matriz y debe salir en la posición (4,4) o la máxima posición si se cambia el tamaño de matriz. El numero y la posición de los obstáculos es aleatoria. El robot solo puede avanzar, girar a la izquierda o a la derecha para buscar un camino libre, en el eventual caso que el robot no pueda salir debe imprimir en pantalla “Imposible llegar al destino”. En caso de que el robot llegue a su destino final deberá imprimir el mapa, con los espacios libres y obstáculos de la siguiente forma X obstáculo o libre. Deberá imprimir también la ruta que siguió. Mostrar un segundo mapa con el “camino” seguido por el robot mediante flechas 
+
+### **Solución**
+```python
+import random
+
+# Definir tamaño del mapa
+tamaño = 5
+
+# Crear la matriz del terreno con espacios libres representados por "o"
+terreno = [['o' for _ in range(tamaño)] for _ in range(tamaño)]
+
+# Definir posición inicial y destino
+pos_actual = (0, 0)
+pos_final = (tamaño - 1, tamaño - 1)
+
+# Almacenar la ruta recorrida
+trayectoria = []
+
+# Direcciones de movimiento disponibles
+movs = ['D', 'B', 'I', 'A']
+direc = 'D'
+
+# Generar obstáculos aleatorios en el mapa sin bloquear el inicio ni la meta
+num_obstaculos = random.randint(tamaño, tamaño * 2)
+for _ in range(num_obstaculos):
+    while True:
+        fila, col = random.randint(0, tamaño - 1), random.randint(0, tamaño - 1)
+        if (fila, col) not in [(0, 0), pos_final]:  # Evitar bloquear la entrada y salida
+            terreno[fila][col] = 'X'
+            break
+
+# Añadir posición inicial al camino recorrido
+trayectoria.append(pos_actual)
+
+# Diccionario de desplazamientos
+desplazamiento = {
+    'D': (0, 1),   # Derecha
+    'I': (0, -1),  # Izquierda
+    'A': (-1, 0),  # Arriba
+    'B': (1, 0)    # Abajo
+}
+
+# Función anónima para verificar si un movimiento es válido
+es_valido = lambda x, y: 0 <= x < tamaño and 0 <= y < tamaño and terreno[x][y] != 'X'
+
+# Iniciar movimiento del robot
+fila, col = pos_actual
+while (fila, col) != pos_final:
+    mov_exitoso = False
+    dx, dy = desplazamiento[direc]
+    nueva_fila, nueva_col = fila + dx, col + dy
+
+    if es_valido(nueva_fila, nueva_col):
+        fila, col = nueva_fila, nueva_col
+        trayectoria.append((fila, col))
+        mov_exitoso = True
+    else:
+        direc = movs[(movs.index(direc) + 1) % 4]  # Cambia de dirección en sentido horario
+
+    if not mov_exitoso and not any(es_valido(fila + dx, col + dy) for dx, dy in desplazamiento.values()):
+        print("\nNo hay ruta disponible.")
+        break
+
+# Mostrar resultados
+if (fila, col) == pos_final:
+    print("\nEl robot llegó al destino.")
+
+# Imprimir el mapa del terreno con la trayectoria recorrida
+print("\nMapa del Terreno:")
+for i in range(tamaño):
+    for j in range(tamaño):
+        if (i, j) in trayectoria:
+            print("*", end=" ")  # Marca el camino con "*"
+        else:
+            print(terreno[i][j], end=" ")
+    print()
+
+# Crear una nueva matriz para visualizar la trayectoria con flechas
+mapa_flechas = [['o' for _ in range(tamaño)] for _ in range(tamaño)]
+indicadores = {(0, 1): '→', (0, -1): '←', (-1, 0): '↑', (1, 0): '↓'}
+
+for k in range(len(trayectoria) - 1):
+    f1, c1 = trayectoria[k]
+    f2, c2 = trayectoria[k + 1]
+    dx, dy = f2 - f1, c2 - c1
+    mapa_flechas[f1][c1] = indicadores[(dx, dy)]
+
+mapa_flechas[pos_final[0]][pos_final[1]] = 'F'  # Marca la meta con 'F'
+
+print("\nMapa con la Ruta Seguida:")
+for fila in mapa_flechas:
+    print(" ".join(fila))
+```
+### **Breve descripción**
+Este código simula un robot explorador en un terreno representado por una matriz de tamaño 5x5. El robot comienza en la posición (0,0) y debe encontrar un camino hasta la meta en la esquina inferior derecha. A lo largo del mapa, se generan obstáculos aleatorios (X) que el robot debe evitar.
+
+El robot sigue una estrategia de exploración moviéndose en cuatro direcciones posibles (D: derecha, B: abajo, I: izquierda, A: arriba). Si encuentra un obstáculo o un límite del mapa, cambia su dirección en sentido horario hasta hallar un camino libre.
+
+La trayectoria recorrida se almacena en una lista y se representa visualmente en un mapa con *, mientras que en otro mapa se usan flechas (→, ↓, ↑, ←) para indicar la dirección del movimiento. Si el robot no encuentra salida, el programa imprime "No hay ruta disponible.". En caso de éxito, muestra "El robot llegó al destino.", junto con el mapa de su recorrido.
+
+## **Problema 7**
+Una tienda quiere gestionar su inventario de productos. Para ello, debes implementar un sistema 
+en Python que permita: 
+- Crear productos, cada uno con un nombre, precio y cantidad en stock. 
+- Actualizar la cantidad en stock cuando se venden productos. 
+- Mostrar la información de un producto con su disponibilidad. 
+- Calcular el valor total del inventario (precio × cantidad de cada producto).
+
+### **Solución explicada**
+
 
 # Referencias
 - Downey, A. (2015). Think Python: How to Think Like a Computer Scientist. O'Reilly Media.
