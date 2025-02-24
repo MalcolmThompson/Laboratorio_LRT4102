@@ -563,6 +563,10 @@ Tienda()
 - Inicia el programa creando una instancia de Tienda.
 - El menú se activa automáticamente, permitiendo la interacción con el usuario.
 
+# Librerias usadas
+
+En este laboratorio se utilizó la libreria de random la cual nos permite generar números aleatorios.
+
 # Referencias
 - Downey, A. (2015). Think Python: How to Think Like a Computer Scientist. O'Reilly Media.
 - Shaw, Z. (2019). Learn Python 3 the Hard Way. Addison-Wesley.
