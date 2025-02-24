@@ -69,7 +69,7 @@ while contador < 3:
     print(f"Intento número {contador + 1}")
     contador += 1
 ```
-## **Funciones en Python**
+## **3. Funciones en Python**
 Las funciones permiten reutilizar código agrupando una serie de instrucciones dentro de un bloque con nombre.
 
 ```python
@@ -83,9 +83,90 @@ Este código define una función calcular_area_circulo() que recibe un valor rad
 
 Python es un lenguaje poderoso y versátil que ofrece una sintaxis clara y flexible. Gracias a su tipado dinámico, estructuras de control y soporte para múltiples paradigmas, es utilizado en una amplia gama de aplicaciones, desde desarrollo web hasta inteligencia artificial. Su facilidad de uso y amplia comunidad lo convierten en una excelente opción tanto para principiantes como para programadores experimentados.
 
+# Programación Orientada a Objetos
+
+La **Programación Orientada a Objetos (POO)** es un paradigma de programación basado en la creación de **objetos** que encapsulan datos y comportamientos en un solo componente. Esta metodología facilita la organización del código, mejora la reutilización y permite modelar problemas de manera más intuitiva (Sebesta, 2019). 
+
+Python es un lenguaje que **implementa POO de forma nativa**, permitiendo a los desarrolladores estructurar aplicaciones de manera eficiente mediante la creación de **clases y objetos**. Además, incorpora mecanismos como **encapsulamiento, herencia y polimorfismo**, los cuales optimizan el mantenimiento del software y reducen la redundancia en el código (Martelli et al., 2020).
+
+---
+
+## **1. Clases y Objetos en Python**
+En POO, una **clase** define una estructura base a partir de la cual se pueden crear **objetos** con características y comportamientos específicos (Stroustrup, 2018). 
+
+Un **objeto** es una instancia de una clase, lo que significa que comparte sus atributos y métodos definidos. Python permite definir clases de manera sencilla utilizando la palabra clave `class`.
+
+```python
+class Vehiculo:
+    def __init__(self, marca, modelo):
+        self.marca = marca
+        self.modelo = modelo
+
+# Creación de un objeto a partir de la clase
+auto = Vehiculo("Toyota", "Corolla")
+```
+Aquí, Vehiculo define una estructura básica con atributos marca y modelo, y auto es una instancia con valores específicos.
+
+## **2. Principios Fundamentales de POO en Python**
+Python implementa varios principios de POO que permiten mejorar la estructura y eficiencia del código.
+
+### **2.1. Encapsulamiento**
+El encapsulamiento consiste en proteger los datos de un objeto para evitar accesos o modificaciones no controladas. Python permite definir atributos públicos, protegidos y privados mediante convenciones de nombres.
+
+```python
+class Banco:
+    def __init__(self, saldo):
+        self.__saldo = saldo  # Atributo privado
+
+    def ver_saldo(self):
+        return self.__saldo  # Método de acceso controlado
+```
+El atributo __saldo es privado y solo puede ser accedido mediante métodos específicos dentro de la misma clase.
+
+### **2.2. Herencia**
+La herencia permite que una clase reutilice atributos y métodos de otra clase existente, evitando la duplicación de código y promoviendo la modularidad (Downey, 2021).
+
+```python
+class Persona:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+class Estudiante(Persona):
+    pass  # Hereda todo de la clase Persona
+
+alumno = Estudiante("Laura")
+```
+La clase Estudiante hereda los atributos de Persona sin necesidad de reescribirlos.
+
+### **2.3. Polimorfismo**
+El polimorfismo permite que múltiples clases utilicen un mismo método con distintas implementaciones, lo que mejora la flexibilidad del código.
+
+```python
+class Guitarra:
+    def sonido(self):
+        return "Suena una melodía."
+
+class Bateria:
+    def sonido(self):
+        return "Produce un ritmo."
+
+instrumentos = [Guitarra(), Bateria()]
+
+for i in instrumentos:
+    print(i.sonido())
+```
+Ambas clases tienen el método sonido(), pero cada una lo ejecuta de manera diferente.
+
+La Programación Orientada a Objetos (POO) en Python, promueve la reutilización y reduce la complejidad de los programas. Aplicando encapsulamiento, herencia y polimorfismo, los desarrolladores pueden escribir código más limpio y estructurado.
+
+# Solucion problemas
+
 # Referencias
 - Downey, A. (2015). Think Python: How to Think Like a Computer Scientist. O'Reilly Media.
 - Shaw, Z. (2019). Learn Python 3 the Hard Way. Addison-Wesley.
 - Zelle, J. (2016). Python Programming: An Introduction to Computer Science. Franklin, Beedle & Associates.
+- Martelli, A., Ravenscroft, A., & Holden, S. (2020). Python in a Nutshell. O’Reilly Media.
+- Sebesta, R. (2019). Concepts of Programming Languages. Pearson.
+- Stroustrup, B. (2018). The C++ Programming Language. Addison-Wesley.
 
 
