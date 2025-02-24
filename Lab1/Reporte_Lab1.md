@@ -1,23 +1,23 @@
-# Introducción
-Python es un lenguaje de programación de alto nivel, dinámico e interpretado, ampliamente utilizado en diversos campos, desde desarrollo de software hasta inteligencia artificial y análisis de datos (Downey, 2015). Su diseño se centra en la legibilidad del código y la simplicidad de su sintaxis, lo que lo convierte en una herramienta accesible tanto para principiantes como para expertos.
+# Introduction
+Python is a high-level, dynamic, interpreted programming language widely used in various fields, from software development to artificial intelligence and data analysis (Downey, 2015). Its design focuses on the readability of the code and the simplicity of its syntax, making it an accessible tool for both beginners and experts.
 
-Este lenguaje admite múltiples paradigmas de programación, incluyendo **programación estructurada, orientada a objetos y funcional**, lo que lo hace flexible para resolver distintos tipos de problemas (Zelle, 2016). Gracias a su extensa biblioteca estándar y su comunidad activa, Python se ha convertido en uno de los lenguajes más populares en el mundo de la tecnología.
+This language supports multiple programming paradigms, including structured, object-oriented, and functional programming, making it flexible to solve different types of problems (Zelle, 2016). Thanks to its extensive standard library and active community, Python has become one of the most popular languages ​​in the world of technology.
 
 ---
 
-## **1. Variables y Tipos de Datos en Python**
+## **1. Variables and Data Types in Python**
 
-En Python, las variables se pueden crear sin necesidad de especificar un tipo de dato explícitamente, ya que el lenguaje cuenta con **tipado dinámico**, lo que significa que el tipo de dato se asigna en tiempo de ejecución según el valor proporcionado (Shaw, 2019).
+In Python, variables can be created without needing to specify a data type explicitly, since the language has **dynamic typing**, which means that the data type is assigned at run time based on the provided value (Shaw, 2019).
 
-A continuación, se presentan los tipos de datos fundamentales en Python:
+Below are the fundamental data types in Python:
 
-- **Números enteros (`int`)**: Representan valores numéricos sin decimales, por ejemplo, `15`, `-8`, `1000`.
-- **Números flotantes (`float`)**: Permiten representar valores con decimales, como `3.1416` o `-2.5`.
-- **Cadenas de texto (`str`)**: Cualquier secuencia de caracteres encerrada entre comillas (`"Hola"`, `'Python'`).
-- **Valores booleanos (`bool`)**: Solo pueden tener dos valores: `True` o `False`.
-- **Listas (`list`)**: Estructuras ordenadas y modificables, por ejemplo, `[1, "rojo", 3.5]`.
-- **Tuplas (`tuple`)**: Similares a las listas, pero inmutables: `(2, "azul", 9.1)`.
-- **Diccionarios (`dict`)**: Almacenan pares clave-valor, como `{"nombre": "Luis", "edad": 25}`.
+- **Integer numbers (`int`)**: Represent numerical values ​​without decimals, for example, `15`, `-8`, `1000`.
+- **Float numbers (`float`)**: They allow values ​​to be represented with decimals, such as `3.1416` or `-2.5`.
+- **Text strings (`str`)**: Any sequence of characters enclosed in quotes (`"Hello"`, `'Python'`).
+- **Boolean values ​​(`bool`)**: They can only have two values: `True` or `False`.
+- **Lists (`list`)**: Ordered and modifiable structures, for example, `[1, "red", 3.5]`.
+- **Tuples (`tuple`)**: Similar to lists, but immutable: `(2, "blue", 9.1)`.
+- **Dictionaries (`dict`)**: They store key-value pairs, such as `{"name": "Luis", "age": 25}`.
 
 ### **Ejemplo de Uso de Variables**
 ```python
