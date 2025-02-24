@@ -423,7 +423,145 @@ en Python que permita:
 - Calcular el valor total del inventario (precio × cantidad de cada producto).
 
 ### **Solución explicada**
+Este código implementa un sistema de inventario de productos usando Programación Orientada a Objetos (POO). El programa permite agregar, vender, consultar y visualizar productos, asegurando que el inventario se gestione correctamente.
 
+#### **Importación de librerias**
+```python
+import random
+```
+import random: Se importa la librería random, que será utilizada para generar IDs aleatorios para los productos dentro del inventario.
+
+#### **Clase Producto: Representación de un Producto**
+Esta clase define la estructura básica de un producto, incluyendo ID, nombre, precio y cantidad en stock.
+
+```python
+class Producto:
+    def __init__(self, id_producto, nombre, precio, cantidad):
+        """Inicializa un producto con su ID, nombre, precio y cantidad en stock."""
+        self.id = id_producto
+        self.nombre = nombre
+        self.precio = precio
+        self.stock = cantidad  
+```
+- self.id: Almacena el identificador único del producto.
+- self.nombre: Guarda el nombre del producto.
+- self.precio: Representa el precio unitario del producto.
+- self.stock: Indica la cantidad disponible del producto en el inventario.
+
+#### **Método vender(): Reduce el Stock al Vender un Producto**
+```python
+def vender(self, cantidad):
+    """Reduce la cantidad en stock cuando se realiza una venta."""
+    if cantidad > self.stock:
+        return False  # No hay suficiente stock para la venta
+    self.stock -= cantidad  # Se descuenta la cantidad vendida del stock
+    return True  # Indica que la venta fue exitosa
+```
+- Verifica si hay suficiente stock disponible antes de proceder con la venta.
+- Si hay stock suficiente, lo reduce y devuelve True.
+- Si no hay stock suficiente, devuelve False.
+
+#### **Método info(): Muestra Información del Producto**
+```python
+def info(self):
+    """Devuelve una cadena con la información del producto."""
+    estado = "Disponible" if self.stock > 0 else "No disponible"
+    return f"ID: {self.id} | {self.nombre} | ${self.precio:.2f} | Stock: {self.stock} | Estado: {estado}"
+```
+- Retorna una cadena con los detalles del producto.
+- Si el stock es mayor a 0, el estado será "Disponible", de lo contrario "No disponible".
+
+#### **Clase Inventario: Gestión de Productos**
+Esta clase maneja la agregación, venta, consulta y visualización de productos en el inventario.
+```python
+class Inventario:
+    def __init__(self):
+        """Inicializa un diccionario vacío para almacenar los productos."""
+        self.productos = {}
+```
+- self.productos: Un diccionario que almacena los productos en formato {ID: Producto}.
+
+#### **Método agregar_producto(): Añade Productos al Inventario**
+```python
+def agregar_producto(self, nombre, precio, cantidad):
+    """Añade un producto con un ID único generado aleatoriamente."""
+    id_producto = random.randint(1000, 9999)  # Genera un ID aleatorio único
+    while id_producto in self.productos:
+        id_producto = random.randint(1000, 9999)
+
+    self.productos[id_producto] = Producto(id_producto, nombre, precio, cantidad)
+    print(f"\nProducto añadido: {nombre} (ID: {id_producto})")
+```
+- Genera un ID aleatorio entre 1000 y 9999.
+- Verifica que el ID sea único antes de agregarlo al diccionario.
+- Crea una instancia de Producto y la almacena en self.productos.
+
+#### **Método vender_producto(): Reduce Stock o Elimina Productos**
+```python
+def vender_producto(self, id_producto, cantidad):
+    """Vende un producto si existe en el inventario y hay suficiente stock disponible."""
+    producto = self.productos.get(id_producto)
+    if not producto:
+        print("\nNo existe un producto con ese ID.")
+    elif producto.vender(cantidad):
+        print(f"\nVenta realizada: {cantidad} unidades de '{producto.nombre}'.")
+        if producto.stock == 0:
+            print(f"'{producto.nombre}' se agotó y fue eliminado.")
+            del self.productos[id_producto]
+    else:
+        print(f"\nStock insuficiente. Quedan {producto.stock} unidades.")
+```
+- Busca el producto en el inventario.
+- Si existe, intenta vender la cantidad indicada.
+- Si el stock llega a 0, elimina el producto del inventario.
+
+#### **Clase Tienda: Manejo del Menú e Interacción con el Usuario**
+Esta clase se encarga de gestionar la interacción con el usuario a través de un menú.
+```python
+class Tienda:
+    def __init__(self):
+        """Inicializa la tienda creando un objeto de la clase Inventario y ejecutando el menú principal."""
+        self.inventario = Inventario()
+        self.ejecutar()
+```
+- Crea una instancia de Inventario.
+- Ejecuta el menú al inicializarse.
+
+#### **Método ejecutar(): Menú Principal**
+```python
+def ejecutar(self):
+    """Ejecuta el menú de opciones y permite la interacción con el usuario."""
+    opciones = {
+        "1": self.agregar,
+        "2": self.vender,
+        "3": self.consultar_producto_agregado,
+        "4": self.mostrar,
+        "5": self.valor_total,
+        "6": exit
+    }
+    while True:
+        print("\nMenú:")
+        print(" 1. Agregar producto")
+        print(" 2. Vender producto")
+        print(" 3. Consultar producto agregado (ID, nombre, precio y stock)")
+        print(" 4. Mostrar todos los productos")
+        print(" 5. Ver valor total del inventario")
+        print(" 6. Salir")
+
+        opcion = input("Selecciona una opción: ")
+        opciones.get(opcion, self.error)()
+```
+- Muestra las opciones disponibles en el sistema.
+- Asocia cada opción a un método mediante un diccionario.
+- Ejecuta la función correspondiente según la opción seleccionada.
+
+#### **Ejecución del Programa**
+```python
+# Ejecutar el programa
+Tienda()
+```
+- Inicia el programa creando una instancia de Tienda.
+- El menú se activa automáticamente, permitiendo la interacción con el usuario.
 
 # Referencias
 - Downey, A. (2015). Think Python: How to Think Like a Computer Scientist. O'Reilly Media.
