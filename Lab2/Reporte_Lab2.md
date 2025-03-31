@@ -83,7 +83,7 @@ The nodo_escucha function initializes the ROS node and sets up the subscriber.
 rospy.spin() keeps the node alive and listening for incoming messages until the program is terminated.
 
 #### *talker.py*
-```pyhon
+```python
 #!/usr/bin/env python3
 
 import rospy
