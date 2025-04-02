@@ -16,7 +16,7 @@ Para llevar a cabo estas prácticas se requiere conocer y aplicar ciertos concep
 La **distancia al objetivo** es una medida directa entre dos puntos en el plano, calculada mediante el teorema de Pitágoras. Esta métrica permite estimar qué tan lejos está el robot de su destino (Siciliano et al., 2010):
 
 $$
-\text{ATG} = \tan^{-1} \left( \frac{y_2 - y_1}{x_2 - x_1} \right)
+\text{DTG} = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
 $$
 
 ### Ángulo hacia el objetivo (ATG)
@@ -30,9 +30,11 @@ $$
 ### Mapeo de Velocidades
 
 Una vez conocidas la distancia y el ángulo hacia el objetivo, se puede establecer un sistema de control que relacione estos errores con velocidades. El **mapeo de velocidades** consiste en traducir el error espacial en comandos de movimiento, normalmente con ecuaciones proporcionales como:
+
 $$
 v = K_p \cdot \text{DTG} \quad ; \quad \omega = K_\theta \cdot (\text{ATG} - \theta_{\text{actual}})
 $$
+
 donde `v` es la velocidad lineal y `ω` la angular (Quigley et al., 2009).
 
 ### Control Proporcional
