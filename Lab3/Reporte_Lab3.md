@@ -54,6 +54,8 @@ En este problema se solicita al usuario que introduzca las coordenadas y el áng
 
 Este ejercicio no involucra movimiento del robot, sino únicamente reposicionamiento por comandos de sistema. Porlo tanto la tortuga simplemente hará spawn en las coordenadas dadas por el usuario. Esto mismo hará que el DTG y ATG sean cero.
 
+#### Código Explicado
+
 ### Segunda Actividad: Movimiento Activo hacia un Objetivo
 
 En esta segunda parte, el usuario vuelve a proporcionar coordenadas (x, y) y un ángulo deseado. A diferencia del primer caso, la tortuga ahora sí se desplaza desde su posición actual hacia el destino. El sistema calcula DTG y ATG, y los usa para determinar:
@@ -62,6 +64,8 @@ En esta segunda parte, el usuario vuelve a proporcionar coordenadas (x, y) y un 
 - **Velocidad angular proporcional** a la diferencia de orientación.
 
 El movimiento se realiza en un bucle que ajusta continuamente las velocidades, hasta que la tortuga se encuentra suficientemente cerca del punto destino. Posteriormente, se aplica una rotación proporcional adicional para que el robot coincida con el ángulo objetivo.
+
+#### Código Explicado
 
 ---
 
