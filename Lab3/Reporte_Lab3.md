@@ -1,91 +1,92 @@
-# Reporte Laboratorio 3
-## Introducción
+# Lab Report 3
 
-En este laboratorio se desarrollan dos actividades fundamentales utilizando el simulador Turtlesim dentro del entorno de ROS (Robot Operating System). La primera consiste en calcular métricas de navegación como la distancia al objetivo (Distance to Goal, DTG) y el ángulo hacia el objetivo (Angle to Goal, ATG), para luego hacer aparecer una tortuga directamente en dicha posición sin necesidad de movimiento. La segunda actividad implica mover activamente una tortuga hacia una posición objetivo, calculando trayectorias a partir de coordenadas euclidianas y utilizando un controlador proporcional, repitiendo este proceso en un bucle.
+## Introduction
 
-Estas actividades tienen como finalidad introducir los conceptos de control proporcional, mapeo de velocidades y uso de servicios de ROS como `spawn` y `kill`, que permiten gestionar dinámicamente entidades dentro del simulador. Además, se trabaja con la suscripción y publicación de tópicos en ROS, reforzando la programación orientada a eventos y el diseño de bucles reactivos.
+This lab involves two fundamental activities using the Turtlesim simulator within the ROS (Robot Operating System) environment. The first task consists of calculating navigation metrics such as the Distance to Goal (DTG) and the Angle to Goal (ATG), then spawning a turtle directly at that position without requiring any movement. The second task involves actively moving a turtle toward a goal position, computing trajectories from Euclidean coordinates and using a proportional controller, repeating this process in a loop.
+
+These activities aim to introduce the concepts of proportional control, velocity mapping, and the use of ROS services such as `spawn` and `kill`, which allow dynamic management of entities within the simulator. Additionally, the lab reinforces event-driven programming and reactive loop design by working with ROS topic subscription and publication.
 
 ---
 
-## Conceptos Clave para el Desarrollo
+## Key Concepts for Implementation
 
-Para llevar a cabo estas prácticas se requiere conocer y aplicar ciertos conceptos fundamentales de navegación y control de robots móviles:
+To carry out these practices, it is essential to understand and apply certain fundamental concepts of mobile robot navigation and control:
 
-### Distancia Euclidiana (DTG)
+### Euclidean Distance (DTG)
 
-La **distancia al objetivo** es una medida directa entre dos puntos en el plano, calculada mediante el teorema de Pitágoras. Esta métrica permite estimar qué tan lejos está el robot de su destino (Siciliano et al., 2010):
+**Distance to Goal** is a direct measurement between two points in the plane, calculated using the Pythagorean theorem. This metric allows estimation of how far the robot is from its destination (Siciliano et al., 2010):
 
 $$
 \text{DTG} = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
 $$
 
-### Ángulo hacia el objetivo (ATG)
+### Angle to Goal (ATG)
 
-El **ángulo hacia el objetivo** representa la dirección en la que el robot debe orientarse para dirigirse hacia la posición meta. Se obtiene mediante la función `atan2`, que calcula el arco tangente considerando el signo de ambos argumentos. Este cálculo se hace en radianes y posteriormente se convierte a grados para facilitar la interpretación humana (Craig, 2005):
+**Angle to Goal** represents the direction the robot must face to move toward the target position. It is obtained using the `atan2` function, which calculates the arctangent while considering the sign of both arguments. This result is given in radians and later converted to degrees for easier interpretation (Craig, 2005):
 
 $$
 \text{ATG} = \tan^{-1}\left(\frac{y_2 - y_1}{x_2 - x_1}\right)
 $$
 
-### Mapeo de Velocidades
+### Velocity Mapping
 
-Una vez conocidas la distancia y el ángulo hacia el objetivo, se puede establecer un sistema de control que relacione estos errores con velocidades. El **mapeo de velocidades** consiste en traducir el error espacial en comandos de movimiento, normalmente con ecuaciones proporcionales como:
+Once the distance and angle to the goal are known, a control system can be established to relate these errors to velocities. **Velocity mapping** consists of translating spatial error into motion commands, typically using proportional equations such as:
 
 $$
 v = K_p \cdot \text{DTG} \quad ; \quad \omega = K_\theta \cdot (\text{ATG} - \theta_{\text{actual}})
 $$
 
-donde `v` es la velocidad lineal y `ω` la angular (Quigley et al., 2009).
+where `v` is the linear velocity and `ω` is the angular velocity (Quigley et al., 2009).
 
-### Control Proporcional
+### Proportional Control
 
-El **control proporcional** (P) es una estrategia de control donde la salida (en este caso las velocidades) es directamente proporcional al error. Esta técnica es común por su simplicidad y respuesta rápida en tareas de navegación (Nise, 2015). En este laboratorio, se aplica tanto al movimiento hacia la meta como a la corrección angular.
-
----
-
-## Descripción de las Actividades
-
-### Primera Actividad: Posicionamiento Estático y Cálculo de Parámetros
-
-En este problema se solicita al usuario que introduzca las coordenadas y el ángulo deseado para una tortuga. En lugar de mover la tortuga existente, se utiliza el servicio `kill` para eliminarla y `spawn` para crearla exactamente en esa posición. Tras posicionarla, el sistema calcula y muestra en pantalla:
-
-- **La distancia hasta la meta (DTG)** utilizando la fórmula de distancia euclidiana.
-- **El ángulo hacia el objetivo (ATG)** en grados, con base en la posición objetivo.
-
-Este ejercicio no involucra movimiento del robot, sino únicamente reposicionamiento por comandos de sistema. Porlo tanto la tortuga simplemente hará spawn en las coordenadas dadas por el usuario. Esto mismo hará que el DTG y ATG sean cero.
-
-#### Código Explicado
-
-### Segunda Actividad: Movimiento Activo hacia un Objetivo
-
-En esta segunda parte, el usuario vuelve a proporcionar coordenadas (x, y) y un ángulo deseado. A diferencia del primer caso, la tortuga ahora sí se desplaza desde su posición actual hacia el destino. El sistema calcula DTG y ATG, y los usa para determinar:
-
-- **Velocidad lineal proporcional** a la distancia al objetivo.
-- **Velocidad angular proporcional** a la diferencia de orientación.
-
-El movimiento se realiza en un bucle que ajusta continuamente las velocidades, hasta que la tortuga se encuentra suficientemente cerca del punto destino. Posteriormente, se aplica una rotación proporcional adicional para que el robot coincida con el ángulo objetivo.
-
-#### Código Explicado
+**Proportional control** (P) is a control strategy where the output (in this case, the velocities) is directly proportional to the error. This technique is commonly used due to its simplicity and fast response in navigation tasks (Nise, 2015). In this lab, it is applied both to movement toward the goal and to angular correction.
 
 ---
 
-## Conclusiones
+## Activity Breakdown
 
-Durante el desarrollo de estas actividades se logró implementar un sistema básico de navegación para un robot simulado, comprendiendo tanto el posicionamiento directo mediante servicios como el control en bucle usando navegación reactiva. Se pudieron observar diferencias claras entre ambos métodos: mientras el reposicionamiento inmediato permite saltos espaciales, el control activo simula condiciones reales donde el robot debe desplazarse suavemente.
+### Activity One: Static Positioning and Parameter Calculation
 
-Además, se utilizaron librerías específicas de ROS:
+In this task, the user is prompted to input the desired coordinates and angle for a turtle. Instead of moving the existing turtle, the `kill` service is used to remove it and the `spawn` service is used to create a new one exactly at the specified position. Once positioned, the system calculates and displays:
 
-- `rospy`: para inicializar nodos, gestionar la suscripción/publicación y servicios.
-- `geometry_msgs.msg.Twist`: para generar comandos de movimiento.
-- `turtlesim.srv.Spawn` y `Kill`: para la gestión de tortugas.
+- **Distance to Goal (DTG)** using the Euclidean distance formula.
+- **Angle to Goal (ATG)** in degrees, based on the target position.
 
-También se aplicaron funciones matemáticas (`sqrt`, `atan2`, `radians`, `degrees`) que permitieron implementar los cálculos de trayectoria y orientación requeridos para una navegación básica. El uso del control proporcional resultó ser una solución efectiva para alcanzar el objetivo deseado, aunque en aplicaciones reales sería necesario incorporar controladores más robustos ante perturbaciones.
+This exercise does not involve any robot movement; instead, the turtle is repositioned through system commands. As a result, the turtle simply spawns at the coordinates provided by the user, and both DTG and ATG become zero.
+
+#### Code Explained
+
+### Activity Two: Active Movement Toward a Goal
+
+In this second part, the user is again asked to provide coordinates (x, y) and a desired angle. Unlike the first case, the turtle now moves from its current position toward the target. The system calculates DTG and ATG and uses them to determine:
+
+- **Linear velocity proportional** to the distance to the goal.
+- **Angular velocity proportional** to the orientation difference.
+
+The movement occurs in a loop that continuously adjusts the velocities until the turtle is sufficiently close to the goal. Then, an additional proportional rotation is applied to align the robot with the target angle.
+
+#### Code Explained
 
 ---
 
-## Referencias
+## Conclusions
 
-- Craig, J. J. (2005). *Introduction to robotics: mechanics and control* (3rd ed.). Pearson Prentice Hall.
-- Nise, N. S. (2015). *Control Systems Engineering* (7th ed.). Wiley.
-- Quigley, M., Gerkey, B., & Smart, W. D. (2009). *Programming Robots with ROS: A Practical Introduction to the Robot Operating System*. O'Reilly Media.
+Throughout these activities, a basic navigation system for a simulated robot was successfully implemented, encompassing both direct positioning using services and reactive loop control. Clear differences were observed between the two methods: while direct repositioning enables instant spatial jumps, active control simulates real-world conditions where the robot must move smoothly.
+
+In addition, specific ROS libraries were used:
+
+- `rospy`: to initialize nodes, manage subscription/publication, and handle services.
+- `geometry_msgs.msg.Twist`: to generate movement commands.
+- `turtlesim.srv.Spawn` and `Kill`: to manage turtle instances.
+
+Mathematical functions (`sqrt`, `atan2`, `radians`, `degrees`) were also used to implement the trajectory and orientation calculations needed for basic navigation. The proportional control method proved to be an effective solution for reaching the desired goal, though in real-world applications more robust controllers would be required to handle disturbances.
+
+---
+
+## References
+
+- Craig, J. J. (2005). *Introduction to robotics: mechanics and control* (3rd ed.). Pearson Prentice Hall.  
+- Nise, N. S. (2015). *Control Systems Engineering* (7th ed.). Wiley.  
+- Quigley, M., Gerkey, B., & Smart, W. D. (2009). *Programming Robots with ROS: A Practical Introduction to the Robot Operating System*. O'Reilly Media.  
 - Siciliano, B., Sciavicco, L., Villani, L., & Oriolo, G. (2010). *Robotics: Modelling, Planning and Control*. Springer.
