@@ -13,11 +13,11 @@ Para llevar a cabo estas prácticas se requiere conocer y aplicar ciertos concep
 
 ### Distancia Euclidiana (DTG)
 
-La **distancia al objetivo** es una medida directa entre dos puntos en el plano, calculada mediante el teorema de Pitágoras:  
+La **distancia al objetivo** es una medida directa entre dos puntos en el plano, calculada mediante el teorema de Pitágoras. Esta métrica permite estimar qué tan lejos está el robot de su destino (Siciliano et al., 2010):
+
 $$
 \text{ATG} = \tan^{-1} \left( \frac{y_2 - y_1}{x_2 - x_1} \right)
 $$
-Esta métrica permite estimar qué tan lejos está el robot de su destino (Siciliano et al., 2010).
 
 ### Ángulo hacia el objetivo (ATG)
 
