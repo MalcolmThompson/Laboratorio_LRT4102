@@ -21,11 +21,11 @@ $$
 
 ### Ángulo hacia el objetivo (ATG)
 
-El **ángulo hacia el objetivo** representa la dirección en la que el robot debe orientarse para dirigirse hacia la posición meta. Se obtiene mediante la función `atan2`, que calcula el arco tangente considerando el signo de ambos argumentos:
+El **ángulo hacia el objetivo** representa la dirección en la que el robot debe orientarse para dirigirse hacia la posición meta. Se obtiene mediante la función `atan2`, que calcula el arco tangente considerando el signo de ambos argumentos. Este cálculo se hace en radianes y posteriormente se convierte a grados para facilitar la interpretación humana (Craig, 2005):
+
 $$
 \text{ATG} = \tan^{-1}\left(\frac{y_2 - y_1}{x_2 - x_1}\right)
 $$
-Este cálculo se hace en radianes y posteriormente se convierte a grados para facilitar la interpretación humana (Craig, 2005).
 
 ### Mapeo de Velocidades
 
