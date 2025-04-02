@@ -1,5 +1,4 @@
-# Laboratorio: Control y Posicionamiento de Tortugas en ROS
-
+# Reporte Laboratorio 3
 ## Introducción
 
 En este laboratorio se desarrollan dos actividades fundamentales utilizando el simulador Turtlesim dentro del entorno de ROS (Robot Operating System). La primera consiste en calcular métricas de navegación como la distancia al objetivo (Distance to Goal, DTG) y el ángulo hacia el objetivo (Angle to Goal, ATG), para luego hacer aparecer una tortuga directamente en dicha posición sin necesidad de movimiento. La segunda actividad implica mover activamente una tortuga hacia una posición objetivo, calculando trayectorias a partir de coordenadas euclidianas y utilizando un controlador proporcional, repitiendo este proceso en un bucle.
