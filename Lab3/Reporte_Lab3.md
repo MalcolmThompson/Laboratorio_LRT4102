@@ -57,6 +57,10 @@ This exercise does not involve any robot movement; instead, the turtle is reposi
 
 #### Code Explained
 
+## Generating Motion Commands from Positional Feedback
+
+In robotic navigation, converting positional feedback into movement commands is essential for responsive and goal oriented behavior. This process, often referred to as velocity mapping, takes the positional error how far and in what direction the robot is from the target and transforms it into real-time velocity values. The greater the distance, the higher the linear velocity assigned, encouraging the robot to move quickly toward the goal. At the same time, the difference in orientation determines the angular velocity, ensuring that the robot faces the correct direction during movement. Rather than relying on fixed speed commands, this approach dynamically adjusts the robot’s motion based on its current position, resulting in smoother trajectories and more efficient convergence. This adaptive behavior is critical for continuous navigation systems and is easily implemented through proportional control mechanisms.
+
 ### Activity Two: Active Movement Toward a Goal
 
 In this second part, the user is again asked to provide coordinates (x, y) and a desired angle. Unlike the first case, the turtle now moves from its current position toward the target. The system calculates DTG and ATG and uses them to determine:
