@@ -57,6 +57,127 @@ This exercise does not involve any robot movement; instead, the turtle is reposi
 
 #### Code Explained
 
+##### *1. Shebang e importaciones*
+```python
+#!/usr/bin/env python3
+
+import rospy
+from turtlesim.srv import Kill, Spawn
+from math import sqrt, atan2, degrees, radians
+```
+- #!/usr/bin/env python3: indica al sistema operativo que este script debe ejecutarse con Python 3.
+
+- rospy: permite usar funcionalidades de ROS en Python.
+
+- turtlesim.srv: se importan los servicios Kill (para eliminar una tortuga) y Spawn (para crear una tortuga).
+
+- math: se importan funciones matemáticas necesarias para calcular distancia y ángulos.
+
+##### *2. Función para eliminar una tortuga*
+```python
+def eliminar_tortuga(nombre_tortuga):
+    rospy.wait_for_service("/kill")
+    try:
+        solicitar_kill = rospy.ServiceProxy("/kill", Kill)
+        solicitar_kill(nombre_tortuga)
+    except rospy.ServiceException:
+        rospy.logwarn(f"[Aviso] No se logró eliminar '{nombre_tortuga}', ya podría no existir.")
+```
+- Espera a que el servicio /kill esté disponible.
+
+- Luego crea un proxy (solicitar_kill) para enviar una solicitud de eliminación.
+
+- Intenta eliminar la tortuga con el nombre indicado. Si falla, muestra un mensaje de advertencia.
+
+##### *3. Función para crear una nueva tortuga*
+```python
+def crear_nueva_tortuga(px, py, angulo_grados, identificador):
+    rospy.wait_for_service("/spawn")
+    try:
+        orientacion = radians(angulo_grados)
+        nueva = rospy.ServiceProxy("/spawn", Spawn)
+        nueva(px, py, orientacion, identificador)
+        return (px, py, orientacion)
+    except rospy.ServiceException as err:
+        rospy.logerr(f"[ERROR] Falló el proceso de creación: {err}")
+        return None
+```
+- Espera a que el servicio /spawn esté disponible.
+
+- Convierte el ángulo de grados a radianes (requerido por ROS).
+
+- Envía una solicitud de creación de tortuga en la posición y orientación dadas.
+
+- Devuelve las coordenadas de la tortuga creada si la operación fue exitosa.
+
+##### *4. Función para capturar entrada del usuario*
+```python
+def capturar_entrada_usuario():
+    print("Parámetros para la nueva tortuga")
+    nuevo_x = float(input("Coordenada X: "))
+    nuevo_y = float(input("Coordenada Y: "))
+    nuevo_angulo = float(input("Ángulo inicial (en grados): "))
+    return nuevo_x, nuevo_y, nuevo_angulo
+```
+- Solicita al usuario ingresar las coordenadas (x, y) y el ángulo deseado.
+
+- Devuelve esos valores para usarlos en la creación de la tortuga.
+
+##### *5. Función para calcular distancia y dirección*
+```python
+def calcular_datos_orientacion(x_obj, y_obj, x_ini, y_ini):
+    distancia = sqrt((x_obj - x_ini)**2 + (y_obj - y_ini)**2)
+    angulo_rad = atan2((y_obj - y_ini), (x_obj - x_ini))
+    return distancia, degrees(angulo_rad)
+```
+- Calcula la distancia euclidiana entre dos puntos.
+
+- Calcula el ángulo hacia el objetivo con atan2 y lo convierte a grados.
+
+- Devuelve ambos valores, DTG y ATG.
+
+##### *6. Función principal*
+```python
+def iniciar_proceso():
+    rospy.init_node("generador_de_tortuga", anonymous=True)
+
+    x_meta, y_meta, theta_meta = capturar_entrada_usuario()
+    
+    eliminar_tortuga("turtle1")
+    
+    resultado = crear_nueva_tortuga(x_meta, y_meta, theta_meta, "turtle1")
+
+    if resultado:
+        x_actual, y_actual, ang_actual = resultado
+        distancia_meta, angulo_deseado = calcular_datos_orientacion(x_meta, y_meta, x_actual, y_actual)
+
+        print(f"\nDistancia calculada al objetivo: {distancia_meta:.3f} unidades")
+        print(f"Dirección hacia el objetivo: {angulo_deseado:.2f}°")
+```
+- Inicializa un nodo de ROS llamado "generador_de_tortuga".
+
+- Llama a las funciones para:
+
+    - Pedir los datos del usuario.
+
+    - Eliminar la tortuga actual (turtle1).
+
+    - Crear una nueva tortuga en la posición objetivo.
+
+    - Calcular y mostrar DTG y ATG (aunque serán 0 porque ya está en el objetivo).
+
+##### *7. Llamada al punto de entrada*
+```python
+if __name__ == "__main__":
+    try:
+        iniciar_proceso()
+    except rospy.ROSInterruptException:
+        pass
+```
+- Indica que iniciar_proceso() debe ejecutarse si el script se corre directamente.
+
+- Maneja la excepción de ROS si el programa es interrumpido (Ctrl+C, cierre, etc.).
+
 ## Generating Motion Commands from Positional Feedback
 
 In robotic navigation, converting positional feedback into movement commands is essential for responsive and goal oriented behavior. This process, often referred to as velocity mapping, takes the positional error how far and in what direction the robot is from the target and transforms it into real-time velocity values. The greater the distance, the higher the linear velocity assigned, encouraging the robot to move quickly toward the goal. At the same time, the difference in orientation determines the angular velocity, ensuring that the robot faces the correct direction during movement. Rather than relying on fixed speed commands, this approach dynamically adjusts the robot’s motion based on its current position, resulting in smoother trajectories and more efficient convergence. This adaptive behavior is critical for continuous navigation systems and is easily implemented through proportional control mechanisms.
