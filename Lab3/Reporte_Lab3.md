@@ -197,6 +197,185 @@ The movement occurs in a loop that continuously adjusts the velocities until the
 
 #### Code Explained
 
+##### *1. Shebang and Imports*
+```python
+#!/usr/bin/env python3
+
+import rospy
+from geometry_msgs.msg import Twist
+from turtlesim.msg import Pose
+from math import atan2, sqrt, pow, pi, radians, degrees
+```
+- #!/usr/bin/env python3: Tells the system to use Python 3 to run the script.
+
+- rospy: Used to interact with ROS.
+
+- geometry_msgs.msg.Twist: Message type used to send velocity commands.
+
+- turtlesim.msg.Pose: Message type used to receive the turtle’s current position and orientation.
+
+- math functions: Used for calculating angles and distances, and converting between radians and degrees.
+
+##### *2. TurtleGoal Class Initialization*
+```python
+class TurtleGoal:
+    def __init__(self):
+        rospy.init_node("guidance_system_node", anonymous=True)
+
+        self.pub = rospy.Publisher("/turtle1/cmd_vel", Twist, queue_size=5)
+        rospy.Subscriber("/turtle1/pose", Pose, self._update_coords)
+
+        self.position = {"x": 0.0, "y": 0.0, "angle": 0.0}
+        self.control_loop = rospy.Rate(10)
+```
+- Initializes a ROS node named "guidance_system_node".
+
+- Creates a publisher for /turtle1/cmd_vel to send velocity commands.
+
+- Subscribes to /turtle1/pose to track the turtle’s current state.
+
+- Initializes an internal dictionary to store position (x, y) and heading angle.
+
+- Sets the control loop rate to 10 Hz (10 updates per second).
+
+##### *3. Update the Turtle’s Position*
+```python
+def _update_coords(self, msg):
+    self.position["x"] = msg.x
+    self.position["y"] = msg.y
+    self.position["angle"] = msg.theta
+```
+- Callback function that updates the turtle’s current coordinates and orientation whenever a new pose message is received.
+
+##### *4. Get User Input for the Goal*
+```python
+def _request_target(self):
+    print("\nNueva posición destino:")
+    px = float(input("X destino: "))
+    py = float(input("Y destino: "))
+    ang_deg = float(input("Ángulo final (°): "))
+    return px, py, radians(ang_deg)
+```
+- Asks the user to input the X and Y coordinates and the final orientation (in degrees).
+
+- Converts the angle to radians and returns all three values.
+
+##### *5. Move Toward the Target Position*
+```python
+def _go_to(self, target):
+    twist = Twist()
+    k_lin = 1.2
+    k_ang = 5.5
+
+    while not rospy.is_shutdown():
+        dx = target[0] - self.position["x"]
+        dy = target[1] - self.position["y"]
+        distance = sqrt(dx**2 + dy**2)
+
+        desired_angle = atan2(dy, dx)
+        angle_error = desired_angle - self.position["angle"]
+        angle_error = (angle_error + pi) % (2 * pi) - pi
+
+        twist.linear.x = k_lin * distance
+        twist.angular.z = k_ang * angle_error
+
+        self.pub.publish(twist)
+
+        rospy.loginfo("Distancia restante: %.2f | Corrigiendo orientación: %.1f°",
+                      distance, degrees(angle_error))
+
+        if distance <= 0.15:
+            break
+
+        self.control_loop.sleep()
+
+    self._halt_motion()
+```
+- This method performs proportional control to reach the target coordinates.
+
+- Calculates:
+
+    - The distance to the goal using Euclidean geometry.
+
+    - The angle to the goal using atan2.
+
+    - The angular error, normalized to the range [-π, π].
+
+- The linear.x and angular.z velocities are calculated proportionally to their respective errors.
+
+- The loop continues until the distance is less than or equal to 0.15 units.
+
+- Once the goal is reached, it stops the turtle’s movement.
+
+##### *6. Orient the Turtle to Final Angle*
+```python
+def _orient_to(self, final_angle):
+    twist = Twist()
+    angular_gain = 3.8
+
+    while not rospy.is_shutdown():
+        angle_gap = final_angle - self.position["angle"]
+        angle_gap = (angle_gap + pi) % (2 * pi) - pi
+
+        twist.angular.z = angular_gain * angle_gap
+        self.pub.publish(twist)
+
+        rospy.loginfo("Ajustando ángulo... [Error: %.2f°]", degrees(angle_gap))
+
+        if abs(angle_gap) < 0.04:
+            break
+
+        self.control_loop.sleep()
+
+    self._halt_motion()
+```
+- Rotates the turtle to the desired final orientation using angular proportional control.
+
+- Calculates the angle difference between current and target angles.
+
+- Publishes only angular velocity (angular.z) based on this error.
+
+- Stops when the angle error is very small (below 0.04 radians ≈ 2.3 degrees).
+
+##### *7. Stop Movement*
+```python
+def _halt_motion(self):
+    self.pub.publish(Twist())
+    rospy.loginfo("Movimiento finalizado.")
+```
+- Publishes a Twist() message with all velocities set to zero.
+
+- Logs that the movement is complete.
+
+##### *8. Main Execution Loop*
+```python
+def launch(self):
+    while not rospy.is_shutdown():
+        coords = self._request_target()
+        self._go_to((coords[0], coords[1]))
+        self._orient_to(coords[2])
+```
+- Repeatedly:
+
+    - Requests a new target from the user.
+
+    - Moves the turtle toward the position.
+
+    - Rotates the turtle to match the final angle.
+
+##### *9. Script Entry Point*
+```python
+if __name__ == "__main__":
+    try:
+        nav = TurtleGoal()
+        nav.launch()
+    except rospy.ROSInterruptException:
+        pass
+```
+- Ensures that the class runs when the script is executed.
+
+- Gracefully handles ROS interruption (e.g., from Ctrl+C).
+
 ---
 
 ## Conclusions
