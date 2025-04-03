@@ -57,7 +57,7 @@ This exercise does not involve any robot movement; instead, the turtle is reposi
 
 #### Code Explained
 
-##### *1. Shebang e importaciones*
+##### *1. Shebang and Imports*
 ```python
 #!/usr/bin/env python3
 
@@ -65,15 +65,15 @@ import rospy
 from turtlesim.srv import Kill, Spawn
 from math import sqrt, atan2, degrees, radians
 ```
-- #!/usr/bin/env python3: indica al sistema operativo que este script debe ejecutarse con Python 3.
+- #!/usr/bin/env python3: Informs the system to execute the script using Python 3.
 
-- rospy: permite usar funcionalidades de ROS en Python.
+- rospy: Python library for interacting with ROS (Robot Operating System).
 
-- turtlesim.srv: se importan los servicios Kill (para eliminar una tortuga) y Spawn (para crear una tortuga).
+- turtlesim.srv: Imports the Kill and Spawn services used to delete or create turtles.
 
-- math: se importan funciones matemáticas necesarias para calcular distancia y ángulos.
+- math: Provides mathematical functions for distance and angle calculations.
 
-##### *2. Función para eliminar una tortuga*
+##### *Function to Delete a Turtle*
 ```python
 def eliminar_tortuga(nombre_tortuga):
     rospy.wait_for_service("/kill")
@@ -83,13 +83,15 @@ def eliminar_tortuga(nombre_tortuga):
     except rospy.ServiceException:
         rospy.logwarn(f"[Aviso] No se logró eliminar '{nombre_tortuga}', ya podría no existir.")
 ```
-- Espera a que el servicio /kill esté disponible.
+- Waits for the /kill service to be available.
 
-- Luego crea un proxy (solicitar_kill) para enviar una solicitud de eliminación.
+- Creates a service proxy (solicitar_kill) to call the Kill service.
 
-- Intenta eliminar la tortuga con el nombre indicado. Si falla, muestra un mensaje de advertencia.
+- Attempts to remove the turtle with the given name.
 
-##### *3. Función para crear una nueva tortuga*
+- Logs a warning if the deletion fails (e.g., the turtle doesn’t exist anymore).
+
+##### *3. Function to Spawn a New Turtle*
 ```python
 def crear_nueva_tortuga(px, py, angulo_grados, identificador):
     rospy.wait_for_service("/spawn")
@@ -102,15 +104,15 @@ def crear_nueva_tortuga(px, py, angulo_grados, identificador):
         rospy.logerr(f"[ERROR] Falló el proceso de creación: {err}")
         return None
 ```
-- Espera a que el servicio /spawn esté disponible.
+- Waits for the /spawn service to be ready.
 
-- Convierte el ángulo de grados a radianes (requerido por ROS).
+- Converts the angle from degrees to radians (required by the Spawn service).
 
-- Envía una solicitud de creación de tortuga en la posición y orientación dadas.
+- Creates a new turtle at the specified position and orientation.
 
-- Devuelve las coordenadas de la tortuga creada si la operación fue exitosa.
+- Returns the turtle’s position if successful; logs an error otherwise.
 
-##### *4. Función para capturar entrada del usuario*
+##### *4. Function to Capture User Input*
 ```python
 def capturar_entrada_usuario():
     print("Parámetros para la nueva tortuga")
@@ -119,24 +121,26 @@ def capturar_entrada_usuario():
     nuevo_angulo = float(input("Ángulo inicial (en grados): "))
     return nuevo_x, nuevo_y, nuevo_angulo
 ```
-- Solicita al usuario ingresar las coordenadas (x, y) y el ángulo deseado.
+- Asks the user to enter the desired X and Y coordinates, and orientation angle.
 
-- Devuelve esos valores para usarlos en la creación de la tortuga.
+- Returns the user input as a tuple of float values.
 
-##### *5. Función para calcular distancia y dirección*
+##### *5. Function to Calculate DTG and ATG*
 ```python
 def calcular_datos_orientacion(x_obj, y_obj, x_ini, y_ini):
     distancia = sqrt((x_obj - x_ini)**2 + (y_obj - y_ini)**2)
     angulo_rad = atan2((y_obj - y_ini), (x_obj - x_ini))
     return distancia, degrees(angulo_rad)
 ```
-- Calcula la distancia euclidiana entre dos puntos.
+- Calculates the Euclidean distance (DTG) between two points.
 
-- Calcula el ángulo hacia el objetivo con atan2 y lo convierte a grados.
+- Calculates the Angle to Goal (ATG) using atan2, which takes into account the sign of both components.
 
-- Devuelve ambos valores, DTG y ATG.
+- Converts the angle from radians to degrees.
 
-##### *6. Función principal*
+- Returns both DTG and ATG.
+
+##### *6. Main Execution Function*
 ```python
 def iniciar_proceso():
     rospy.init_node("generador_de_tortuga", anonymous=True)
@@ -154,19 +158,19 @@ def iniciar_proceso():
         print(f"\nDistancia calculada al objetivo: {distancia_meta:.3f} unidades")
         print(f"Dirección hacia el objetivo: {angulo_deseado:.2f}°")
 ```
-- Inicializa un nodo de ROS llamado "generador_de_tortuga".
+- Initializes a ROS node called "generador_de_tortuga".
 
-- Llama a las funciones para:
+- Calls the function to get user input (goal coordinates and angle).
 
-    - Pedir los datos del usuario.
+- Deletes the existing turtle using /kill.
 
-    - Eliminar la tortuga actual (turtle1).
+- Spawns a new turtle at the specified goal position using /spawn.
 
-    - Crear una nueva tortuga en la posición objetivo.
+- If the turtle was successfully created, calculates DTG and ATG (which will be 0 since it spawns at the goal).
 
-    - Calcular y mostrar DTG y ATG (aunque serán 0 porque ya está en el objetivo).
+- Displays both values in the terminal.
 
-##### *7. Llamada al punto de entrada*
+##### *7. Entry Point*
 ```python
 if __name__ == "__main__":
     try:
@@ -174,9 +178,9 @@ if __name__ == "__main__":
     except rospy.ROSInterruptException:
         pass
 ```
-- Indica que iniciar_proceso() debe ejecutarse si el script se corre directamente.
+- Ensures the iniciar_proceso() function runs if the script is executed directly.
 
-- Maneja la excepción de ROS si el programa es interrumpido (Ctrl+C, cierre, etc.).
+- Catches ROSInterruptException (e.g., if the user presses Ctrl+C) to safely terminate the node.
 
 ## Generating Motion Commands from Positional Feedback
 
