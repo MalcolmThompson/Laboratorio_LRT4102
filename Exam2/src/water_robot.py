@@ -30,6 +30,7 @@ class MiRobot:
 
         self.lista = []
         self.meta = ['red', 'green']
+        self.tiempos = []
 
     def leer_pos(self, data):
         self.pos = data
@@ -140,11 +141,14 @@ class MiRobot:
                 self.mover(objetivo['x'], objetivo['y'])
                 end = time.perf_counter()
 
+                duracion = round(end - start, 2)
+                self.tiempos.append({'color': objetivo['color'], 'tiempo': duracion})
+
                 self.lapiz(255, 255, 255, 5, 0)
                 self.pub.publish(Twist())
                 rospy.sleep(0.1)
 
-                print(f"Listo, basura {objetivo['color']} recogida en {round(end - start, 2)}s")
+                print(f"Listo, basura {objetivo['color']} recogida en {duracion} segundos")
                 self.lista.remove(objetivo)
             else:
                 print("No veo basura verde o roja. Esperando...")
@@ -163,6 +167,12 @@ class MiRobot:
                     self.reset()
 
                 if r1 != 's' and r2 != 's':
+                    print("\nTiempos registrados:")
+                    for i, t in enumerate(self.tiempos, 1):
+                        print(f"{i}. {t['color']} - {t['tiempo']} segundos")
+                    if self.tiempos:
+                        promedio = sum(t['tiempo'] for t in self.tiempos) / len(self.tiempos)
+                        print(f"\nPromedio de limpieza: {round(promedio, 2)} segundos")
                     print("Nada más que hacer. Adiós.")
                     break
 
