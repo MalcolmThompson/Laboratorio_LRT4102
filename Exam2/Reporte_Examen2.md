@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This report presents the design and simulation of an autonomous floating robot capable of identifying and removing floating waste from aquatic environments. The simulation is developed using the `turtlesim` package in ROS (Robot Operating System) and aims to emulate the behavior of a physical prototype constructed by students.
+This report presents the design and simulation of an autonomous floating robot capable of identifying and removing floating waste from aquatic environments. The simulation is developed using the `turtlesim` package in ROS (Robot Operating System) and aims to emulate the behavior of a physical prototype constructed.
 
 The virtual robot operates within a 2D environment and detects visual representations of waste based on color. Once detected, the robot approaches the waste and simulates a cleaning action. This behavior is intended to mirror the real-world implementation, where the robot utilizes a camera and color filtering (via OpenCV) to recognize red and green-colored objects on the water surface, and communicates with Arduino to activate motors for navigation.
 
